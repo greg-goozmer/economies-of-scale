@@ -1,0 +1,51 @@
+{% extends "cost_base.html" %}
+
+{% block title %}Издержки кофейного уголка — Масштаб{% endblock %}
+
+{% block content %}
+<section class="tiles-screen" aria-labelledby="tiles-heading">
+    <header class="screen-header">
+        <h1 id="tiles-heading">Издержки кофейного уголка</h1>
+        <p>База: {{ base_cups_per_month }} напитков/мес.</p>
+    </header>
+
+    <form class="cost-filter" method="get" action="/costs">
+        <label for="max-monthly-cost">Расходы за месяц до, ₽</label>
+        <input
+            id="max-monthly-cost"
+            name="max_monthly_cost"
+            type="text"
+            inputmode="decimal"
+            value="{{ filter_value }}"
+        >
+        <div class="filter-actions">
+            <button type="submit">Показать</button>
+            <a href="/costs">Сбросить</a>
+        </div>
+    </form>
+
+    {% if error_message %}
+        <p class="validation-error" role="alert">{{ error_message }}</p>
+    {% endif %}
+
+    <p class="result-count">Найдено: {{ costs|length }}</p>
+
+    {% if not error_message and filter_applied and not costs %}
+        <p class="empty-result">По заданному порогу издержки не найдены</p>
+    {% endif %}
+
+    <div class="tiles-grid">
+        {% for cost in costs %}
+            <a class="cost-tile" href="/costs/feed?cost_id={{ cost.cost_id }}">
+                <img src="{{ cost.cost_image_url }}" alt="{{ cost.cost_name }}">
+                <span class="cost-tile__name">{{ cost.cost_name }}</span>
+                <strong>{{ cost.monthly_cost_display }} ₽/мес.</strong>
+                <span class="like-indicator" aria-label="Лайков: {{ cost.like_count }}">
+                    <span aria-hidden="true">♡</span>
+                    <span>{{ cost.like_count }}</span>
+                </span>
+            </a>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

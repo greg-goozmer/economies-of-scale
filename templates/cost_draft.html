@@ -1,0 +1,89 @@
+{% extends "cost_base.html" %}
+
+{% block title %}Добавление издержки — Масштаб{% endblock %}
+
+{% block content %}
+<section class="draft-screen" aria-labelledby="draft-heading">
+    <header class="screen-header">
+        <div>
+            <h1 id="draft-heading">Добавление издержки</h1>
+            {% if draft %}<span class="status-label">Черновик</span>{% endif %}
+        </div>
+    </header>
+
+    {% if empty_message %}
+        <div class="screen-message">
+            <p>{{ empty_message }}</p>
+        </div>
+    {% elif draft %}
+        <div class="draft-fields">
+            <section class="media-field" aria-labelledby="draft-image-label">
+                <h2 id="draft-image-label">Изображение</h2>
+                <img src="{{ draft.cost_image_url }}" alt="{{ draft.cost_name }}">
+                <label>
+                    Выбрать изображение
+                    <input type="file" name="cost_image" accept="image/jpeg">
+                </label>
+            </section>
+
+            <section class="media-field" aria-labelledby="draft-video-label">
+                <h2 id="draft-video-label">Видео</h2>
+                <video controls playsinline poster="{{ draft.cost_image_url }}">
+                    <source src="{{ draft.cost_video_url }}" type="video/mp4">
+                    Ваш браузер не поддерживает видео.
+                </video>
+                <label>
+                    Выбрать видео
+                    <input type="file" name="cost_video" accept="video/mp4">
+                </label>
+            </section>
+
+            <label class="control-field">
+                <span>Название</span>
+                <input type="text" name="cost_name" value="{{ draft.cost_name }}">
+            </label>
+
+            <label class="control-field">
+                <span>Описание</span>
+                <textarea name="cost_description" rows="6">{{ draft.cost_description }}</textarea>
+            </label>
+
+            <label class="control-field">
+                <span>Вид издержек</span>
+                <select name="cost_behavior">
+                    <option value="fixed"{% if draft.cost_behavior == 'fixed' %} selected{% endif %}>Постоянные</option>
+                    <option value="variable"{% if draft.cost_behavior == 'variable' %} selected{% endif %}>Переменные</option>
+                </select>
+            </label>
+
+            <label class="control-field">
+                <span>Расходы за месяц, ₽</span>
+                <input
+                    type="number"
+                    name="monthly_cost_rub"
+                    value="{{ draft.monthly_cost_input }}"
+                    min="0"
+                    step="0.01"
+                >
+            </label>
+
+            <p class="secondary-text">
+                База: {{ base_cups_per_month }} напитков/мес.
+            </p>
+            <p class="cost-source">
+                <a href="{{ draft.cost_source_url }}" target="_blank" rel="noopener noreferrer">
+                    Источник исходной цены
+                </a>
+                <span>Проверено: {{ draft.source_checked_display }}</span>
+            </p>
+            <p class="like-indicator" aria-label="Лайков: {{ draft.like_count }}">
+                <span aria-hidden="true">♡</span>
+                <strong>{{ draft.like_count }}</strong>
+            </p>
+
+            <button type="button" disabled>Опубликовать</button>
+            <p class="secondary-text">Изменения не сохраняются</p>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}

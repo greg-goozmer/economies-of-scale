@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Масштаб{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/costs.css') }}">
+</head>
+<body>
+    <div class="app-shell">
+        <main class="app-content">
+            {% block content %}{% endblock %}
+        </main>
+
+        <nav class="bottom-nav" aria-label="Основная навигация">
+            <a
+                class="bottom-nav__item{% if active_tab == 'feed' %} is-active{% endif %}"
+                href="/costs/feed"
+                {% if active_tab == 'feed' %}aria-current="page"{% endif %}
+            >Лента</a>
+            <a
+                class="bottom-nav__item{% if active_tab == 'draft' %} is-active{% endif %}"
+                href="/costs/draft"
+                {% if active_tab == 'draft' %}aria-current="page"{% endif %}
+            >Добавление</a>
+            <a
+                class="bottom-nav__item{% if active_tab == 'tiles' %} is-active{% endif %}"
+                href="/costs"
+                {% if active_tab == 'tiles' %}aria-current="page"{% endif %}
+            >Плитка</a>
+        </nav>
+    </div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+{% extends "cost_base.html" %}
+
+{% block title %}Лента издержек — Масштаб{% endblock %}
+
+{% block content %}
+<section class="feed-screen" aria-labelledby="feed-heading">
+    <h1 id="feed-heading" class="visually-hidden">Лента издержек</h1>
+
+    {% if error_message %}
+        <div class="screen-message" role="alert">
+            <p>{{ error_message }}</p>
+            {% if show_tiles_link %}
+                <a href="/costs">Перейти к плитке</a>
+            {% endif %}
+        </div>
+    {% elif empty_message %}
+        <div class="screen-message">
+            <p>{{ empty_message }}</p>
+        </div>
+    {% elif cost %}
+        <article class="feed-card">
+            <video
+                class="feed-card__video"
+                autoplay
+                muted
+                loop
+                playsinline
+                poster="{{ cost.cost_image_url }}"
+                aria-label="Видео: {{ cost.cost_name }}"
+            >
+                <source src="{{ cost.cost_video_url }}" type="video/mp4">
+                Ваш браузер не поддерживает видео.
+            </video>
+            <div class="feed-card__shade" aria-hidden="true"></div>
+
+            <div class="feed-card__content">
+                <div class="feed-card__description">
+                    <p class="feed-card__base">
+                        База: {{ base_cups_per_month }} напитков/мес.
+                    </p>
+                    <h2>{{ cost.cost_name }}</h2>
+                    <details class="cost-details">
+                        <summary>
+                            <span class="cost-details__more">Больше</span>
+                            <span class="cost-details__less">Меньше</span>
+                        </summary>
+                        <p>{{ cost.cost_description }}</p>
+                        <p class="cost-source">
+                            <a href="{{ cost.cost_source_url }}" target="_blank" rel="noopener noreferrer">
+                                Источник исходной цены
+                            </a>
+                            <span>Проверено: {{ cost.source_checked_display }}</span>
+                        </p>
+                    </details>
+                </div>
+
+                <aside class="feed-card__facts" aria-label="Показатели издержки">
+                    <img
+                        class="feed-card__preview"
+                        src="{{ cost.cost_image_url }}"
+                        alt="{{ cost.cost_name }}"
+                        width="48"
+                        height="64"
+                    >
+                    <div>
+                        <span class="fact-label">Вид издержек</span>
+                        <strong>{{ cost.cost_behavior_display }}</strong>
+                    </div>
+                    <div>
+                        <span class="fact-label">Расходы за месяц</span>
+                        <strong>{{ cost.monthly_cost_display }} ₽/мес.</strong>
+                    </div>
+                    <div class="like-indicator" aria-label="Лайков: {{ cost.like_count }}">
+                        <span aria-hidden="true">♡</span>
+                        <strong>{{ cost.like_count }}</strong>
+                    </div>
+                    <a class="next-link" href="{{ next_url }}">Следующая</a>
+                </aside>
+            </div>
+        </article>
+    {% endif %}
+</section>
+{% endblock %}
