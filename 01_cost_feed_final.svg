@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="704" viewBox="0 0 360 704">
+  <rect width="360" height="704" fill="#FFFFFF"/>
+  <g id="media">
+    <rect x="0" y="0" width="360" height="640" fill="#BFC3C6"/>
+    <rect x="0" y="354" width="360" height="286" fill="#727678"/>
+    <rect x="0" y="380" width="360" height="260" fill="#000000" opacity="0.16"/>
+    <text x="16" y="28" font-family="YS Text, Arial, sans-serif" font-size="12" fill="#FFFFFF">ВИДЕО · 9:16</text>
+
+    <g id="coffee_machine_poster">
+      <rect x="38" y="92" width="284" height="354" rx="24" fill="#22282C"/>
+      <rect x="60" y="120" width="240" height="78" rx="14" fill="#080D10"/>
+      <rect x="77" y="138" width="82" height="42" rx="8" fill="#D8D8D8"/>
+      <circle cx="100" cy="159" r="9" fill="#727A80"/>
+      <rect x="173" y="142" width="102" height="10" rx="5" fill="#657078"/>
+      <rect x="173" y="160" width="78" height="8" rx="4" fill="#59636A"/>
+      <rect x="82" y="224" width="196" height="150" rx="16" fill="#0D1317"/>
+      <circle cx="124" cy="258" r="18" fill="#293138"/>
+      <circle cx="236" cy="258" r="18" fill="#293138"/>
+      <rect x="144" y="242" width="54" height="12" rx="6" fill="#747B80"/>
+      <rect x="157" y="254" width="24" height="58" rx="5" fill="#A9AFB4"/>
+      <path d="M165 312 L165 340 M177 312 L177 340" stroke="#D9DEE1" stroke-width="4" stroke-linecap="round"/>
+      <rect x="126" y="336" width="108" height="48" rx="12" fill="#BEBEBE"/>
+      <path d="M234 351 C256 351 256 372 234 372" fill="none" stroke="#D7D7D7" stroke-width="10" stroke-linecap="round"/>
+      <rect x="58" y="414" width="244" height="20" rx="10" fill="#050A0E"/>
+    </g>
+  </g>
+
+  <g id="info">
+    <g id="description_column">
+      <text x="16" y="488" font-family="YS Text, Arial, sans-serif" font-size="12" fill="#FFFFFF">База: 1000 напитков/мес.</text>
+      <text x="16" y="516" font-family="YS Text, Arial, sans-serif" font-size="18" font-weight="500" fill="#FFFFFF">Аренда кофемашины</text>
+      <text x="16" y="540" font-family="YS Text, Arial, sans-serif" font-size="12.5" fill="#FFFFFF">Платная аренда Dr.coffee F10.</text>
+      <text x="16" y="560" font-family="YS Text, Arial, sans-serif" font-size="12.5" fill="#FFFFFF">Одна машина · 9 900 ₽ в месяц.</text>
+
+      <g id="description_toggle">
+        <rect x="16" y="578" width="82" height="30" rx="8" fill="#FFFFFF"/>
+        <text x="28" y="598" font-family="YS Text, Arial, sans-serif" font-size="12" font-weight="500" fill="#000000">Больше</text>
+        <path d="M78 589 l5 5 l5 -5" fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </g>
+
+    <g id="facts_column">
+      <rect x="232" y="404" width="112" height="220" rx="12" fill="#FFFFFF" opacity="0.96"/>
+
+      <g id="image_preview_48x64">
+        <rect x="244" y="416" width="48" height="64" rx="8" fill="#BFC3C6"/>
+        <rect x="250" y="423" width="36" height="48" rx="6" fill="#22282C"/>
+        <rect x="254" y="428" width="28" height="12" rx="3" fill="#080D10"/>
+        <circle cx="261" cy="434" r="3" fill="#D8D8D8"/>
+        <rect x="255" y="445" width="26" height="18" rx="3" fill="#0D1317"/>
+        <rect x="263" y="448" width="10" height="10" rx="2" fill="#A9AFB4"/>
+        <rect x="259" y="459" width="18" height="7" rx="2" fill="#D7D7D7"/>
+      </g>
+
+      <g id="info_behavior">
+        <text x="244" y="500" font-family="YS Text, Arial, sans-serif" font-size="10.5" fill="#7D858C">Вид издержек</text>
+        <text x="244" y="517" font-family="YS Text, Arial, sans-serif" font-size="13" font-weight="500" fill="#000000">Постоянные</text>
+      </g>
+
+      <g id="info_cost">
+        <text x="244" y="539" font-family="YS Text, Arial, sans-serif" font-size="10.5" fill="#7D858C">Расходы</text>
+        <text x="244" y="556" font-family="YS Text, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#000000">9 900 ₽/мес.</text>
+      </g>
+
+      <g id="likes">
+        <path d="M244 563 C244 557 252 556 255 561 C258 556 266 557 266 563 C266 571 255 577 255 577 C255 577 244 571 244 563 Z" fill="none" stroke="#000000" stroke-width="1.6"/>
+        <text x="274" y="572" font-family="YS Text, Arial, sans-serif" font-size="13" font-weight="500" fill="#000000">3</text>
+      </g>
+
+      <g id="next_control">
+        <rect x="244" y="580" width="88" height="44" rx="8" fill="#000000"/>
+        <text x="288" y="607" text-anchor="middle" font-family="YS Text, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#FFFFFF">Следующая</text>
+      </g>
+    </g>
+  </g>
+
+  <g id="navigation">
+    <rect x="0" y="640" width="360" height="64" fill="#FFFFFF"/>
+    <line x1="0" y1="640.5" x2="360" y2="640.5" stroke="#CED8E1"/>
+    <rect x="8" y="650" width="104" height="44" rx="12" fill="#000000"/>
+    <text x="60" y="678" text-anchor="middle" font-family="YS Text, Arial, sans-serif" font-size="13" font-weight="500" fill="#FFFFFF">Лента</text>
+    <text x="180" y="678" text-anchor="middle" font-family="YS Text, Arial, sans-serif" font-size="13" fill="#7D858C">Добавление</text>
+    <text x="300" y="678" text-anchor="middle" font-family="YS Text, Arial, sans-serif" font-size="13" fill="#7D858C">Плитка</text>
+  </g>
+</svg>

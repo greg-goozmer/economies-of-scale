@@ -19,7 +19,7 @@ coffee_costs = [
         "cost_behavior": "fixed",
         "monthly_cost_rub": Decimal("9900.00"),
         "cost_image_url": (
-            "http://localhost:9000/coffee-costs/coffee_machine_rental.jpg"
+            "http://localhost:9000/coffee-costs/coffee_machine_rental.png"
         ),
         "cost_video_url": (
             "http://localhost:9000/coffee-costs/coffee_machine_rental.mp4"
@@ -42,7 +42,7 @@ coffee_costs = [
         "cost_behavior": "fixed",
         "monthly_cost_rub": Decimal("332.50"),
         "cost_image_url": (
-            "http://localhost:9000/coffee-costs/cash_register_subscription.jpg"
+            "http://localhost:9000/coffee-costs/cash_register_subscription.png"
         ),
         "cost_video_url": (
             "http://localhost:9000/coffee-costs/cash_register_subscription.mp4"
@@ -63,7 +63,7 @@ coffee_costs = [
         "cost_status": "published",
         "cost_behavior": "variable",
         "monthly_cost_rub": Decimal("39024.00"),
-        "cost_image_url": "http://localhost:9000/coffee-costs/coffee_beans.jpg",
+        "cost_image_url": "http://localhost:9000/coffee-costs/coffee_beans.png",
         "cost_video_url": "http://localhost:9000/coffee-costs/coffee_beans.mp4",
         "cost_liked_by": [101, 102, 104, 105],
         "cost_source_url": "https://shop.tastycoffee.ru/coffee/brazilia-1kg",
@@ -82,7 +82,7 @@ coffee_costs = [
         "cost_status": "published",
         "cost_behavior": "variable",
         "monthly_cost_rub": Decimal("29000.00"),
-        "cost_image_url": "http://localhost:9000/coffee-costs/milk.jpg",
+        "cost_image_url": "http://localhost:9000/coffee-costs/milk.png",
         "cost_video_url": "http://localhost:9000/coffee-costs/milk.mp4",
         "cost_liked_by": [102, 103],
         "cost_source_url": "https://swlife.ru/119653",
@@ -100,7 +100,7 @@ coffee_costs = [
         "cost_status": "published",
         "cost_behavior": "variable",
         "monthly_cost_rub": Decimal("6890.00"),
-        "cost_image_url": "http://localhost:9000/coffee-costs/paper_cups.jpg",
+        "cost_image_url": "http://localhost:9000/coffee-costs/paper_cups.png",
         "cost_video_url": "http://localhost:9000/coffee-costs/paper_cups.mp4",
         "cost_liked_by": [104],
         "cost_source_url": (
@@ -122,7 +122,7 @@ coffee_costs = [
         "cost_status": "published",
         "cost_behavior": "variable",
         "monthly_cost_rub": Decimal("1790.00"),
-        "cost_image_url": "http://localhost:9000/coffee-costs/cup_lids.jpg",
+        "cost_image_url": "http://localhost:9000/coffee-costs/cup_lids.png",
         "cost_video_url": "http://localhost:9000/coffee-costs/cup_lids.mp4",
         "cost_liked_by": [101, 105],
         "cost_source_url": (
@@ -142,7 +142,7 @@ coffee_costs = [
         "cost_status": "draft",
         "cost_behavior": "variable",
         "monthly_cost_rub": Decimal("830.00"),
-        "cost_image_url": "http://localhost:9000/coffee-costs/sugar_sticks.jpg",
+        "cost_image_url": "http://localhost:9000/coffee-costs/sugar_sticks.png",
         "cost_video_url": "http://localhost:9000/coffee-costs/sugar_sticks.mp4",
         "cost_liked_by": [],
         "cost_source_url": (
