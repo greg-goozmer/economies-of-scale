@@ -1,0 +1,52 @@
+{% extends "expense_base.html" %}
+{% block title %}Каталог издержек — Масштаб{% endblock %}
+{% block content %}
+<section class="tiles-screen" aria-labelledby="tiles-title">
+    <header class="screen-header">
+        <p class="eyebrow">Оценка экономии от масштаба</p>
+        <h1 id="tiles-title">Каталог издержек</h1>
+    </header>
+
+    <form class="expense-filter" method="get" action="/expenses">
+        <div class="filter-heading">
+            <span>Диапазон кодов</span>
+            {% if filter_applied %}<a href="/expenses">Сбросить</a>{% endif %}
+        </div>
+        <div class="filter-values" aria-live="polite">
+            <span>От <strong>{{ selected_minimum }}</strong></span>
+            <span>До <strong>{{ selected_maximum }}</strong></span>
+        </div>
+        <div class="dual-range">
+            <div class="dual-range__track" aria-hidden="true"></div>
+            <input type="range" name="min_expense_code" min="{{ code_minimum }}" max="{{ code_maximum }}" value="{{ selected_minimum }}" aria-label="Минимальный код издержки">
+            <input type="range" name="max_expense_code" min="{{ code_minimum }}" max="{{ code_maximum }}" value="{{ selected_maximum }}" aria-label="Максимальный код издержки">
+        </div>
+        <button type="submit">Применить</button>
+    </form>
+
+    {% if error_message %}
+        <p class="validation-error" role="alert">{{ error_message }}</p>
+    {% elif filter_applied and not expenses %}
+        <p class="empty-result">В выбранном диапазоне издержки не найдены</p>
+    {% endif %}
+
+    <p class="result-count">Найдено: {{ expenses|length }}</p>
+    <div class="expense-grid">
+    {% for expense in expenses %}
+        <a class="expense-card" href="/expenses/feed?expense_id={{ expense.expense_id }}" aria-label="{{ expense.expense_name }}">
+            <img src="{{ expense.expense_image_url }}" alt="" width="158" height="74">
+            <span class="expense-card__body">
+                <strong>{{ expense.expense_name }}</strong>
+                <span class="expense-card__meta">
+                    <span>Код {{ expense.expense_code_display }}</span>
+                    <span class="card-likes" aria-label="Лайков: {{ expense.like_count }}">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 10c0 5.65-7 10-7 10z"/></svg>
+                        {{ expense.like_count }}
+                    </span>
+                </span>
+            </span>
+        </a>
+    {% endfor %}
+    </div>
+</section>
+{% endblock %}

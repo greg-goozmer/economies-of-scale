@@ -1,0 +1,63 @@
+{% extends "expense_base.html" %}
+{% block title %}Лента издержек — Масштаб{% endblock %}
+{% block content %}
+<section class="feed-screen" aria-label="Лента издержек">
+{% if error_message or empty_message %}
+    <div class="screen-message" role="status">
+        <p>{{ error_message or empty_message }}</p>
+        {% if show_tiles_link %}<a href="/expenses">Перейти к плитке</a>{% endif %}
+    </div>
+{% elif expense %}
+    <video class="feed-video" autoplay muted loop playsinline poster="{{ expense.expense_image_url }}" aria-label="Видео: {{ expense.expense_name }}">
+        <source src="{{ expense.expense_video_url }}" type="video/mp4">
+    </video>
+    <div class="feed-shade" aria-hidden="true"></div>
+
+    <div class="feed-copy">
+        <h1>{{ expense.expense_name }}</h1>
+        <details class="description-disclosure">
+            <summary>
+                <span class="description-preview">{{ expense.expense_description }}</span>
+                <span class="description-toggle">
+                    <span class="description-more">Ещё</span>
+                    <span class="description-less">Свернуть</span>
+                </span>
+            </summary>
+            <p>{{ expense.expense_description }}</p>
+        </details>
+    </div>
+
+    <aside class="feed-actions" aria-label="Действия с карточкой">
+        <div class="feed-action like-indicator" aria-label="Лайков: {{ expense.like_count }}">
+            <span class="feed-action__icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 10c0 5.65-7 10-7 10z"/></svg>
+            </span>
+            <span class="feed-action__label">{{ expense.like_count }}</span>
+        </div>
+
+        <details class="parameter-disclosure">
+            <summary class="feed-action" aria-label="Показать параметры">
+                <span class="feed-action__icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10M14 4v6M6 14v6"/><circle cx="14" cy="7" r="2"/><circle cx="6" cy="17" r="2"/></svg>
+                </span>
+                <span class="feed-action__label">Параметры</span>
+            </summary>
+            <div class="parameter-panel">
+                <h2>Параметры</h2>
+                <dl>
+                    <div><dt>Вид издержек</dt><dd>{{ expense.expense_behavior_display }}</dd></div>
+                    <div><dt>Код издержки</dt><dd>{{ expense.expense_code_display }}</dd></div>
+                </dl>
+            </div>
+        </details>
+
+        <a class="feed-action next-expense" href="{{ next_url }}" aria-label="Следующая издержка">
+            <span class="feed-action__icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v13M7 13l5 5 5-5"/></svg>
+            </span>
+            <span class="feed-action__label">Далее</span>
+        </a>
+    </aside>
+{% endif %}
+</section>
+{% endblock %}

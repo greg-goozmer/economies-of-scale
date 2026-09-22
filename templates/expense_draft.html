@@ -1,0 +1,54 @@
+{% extends "expense_base.html" %}
+{% block title %}Добавление издержки — Масштаб{% endblock %}
+{% block content %}
+<section class="draft-screen" aria-labelledby="draft-title">
+{% if draft %}
+    <header class="screen-header draft-header">
+        <p class="eyebrow">Черновик</p>
+        <h1 id="draft-title">Добавление издержки</h1>
+    </header>
+
+    <form class="draft-form">
+        <fieldset class="media-fields">
+            <legend>Медиа</legend>
+            <label class="file-field">
+                <span>Изображение</span>
+                <input type="file" accept="image/png,image/jpeg" name="expense_image">
+                <img src="{{ draft.expense_image_url }}" alt="Превью: {{ draft.expense_name }}" width="52" height="52">
+            </label>
+            <label class="file-field">
+                <span>Вертикальное видео</span>
+                <input type="file" accept="video/mp4" name="expense_video">
+                <video poster="{{ draft.expense_image_url }}" autoplay muted loop playsinline aria-label="Превью видео: {{ draft.expense_name }}">
+                    <source src="{{ draft.expense_video_url }}" type="video/mp4">
+                </video>
+            </label>
+        </fieldset>
+
+        <label class="form-field">
+            <span>Название</span>
+            <input name="expense_name" value="{{ draft.expense_name }}">
+        </label>
+        <label class="form-field description-field">
+            <span>Описание</span>
+            <textarea name="expense_description">{{ draft.expense_description }}</textarea>
+        </label>
+        <div class="field-row">
+            <label class="form-field">
+                <span>Вид издержек</span>
+                <select name="expense_behavior">
+                    <option value="fixed"{% if draft.expense_behavior == 'fixed' %} selected{% endif %}>Постоянные</option>
+                    <option value="variable"{% if draft.expense_behavior == 'variable' %} selected{% endif %}>Переменные</option>
+                </select>
+            </label>
+            <label class="form-field code-field">
+                <span>Код издержки</span>
+                <input type="number" name="expense_code" min="0" value="{{ draft.expense_code }}">
+            </label>
+        </div>
+    </form>
+{% else %}
+    <div class="screen-message">{{ empty_message }}</div>
+{% endif %}
+</section>
+{% endblock %}
