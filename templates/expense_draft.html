@@ -2,53 +2,71 @@
 {% block title %}Добавление издержки — Масштаб{% endblock %}
 {% block content %}
 <section class="draft-screen" aria-labelledby="draft-title">
-{% if draft %}
     <header class="screen-header draft-header">
         <p class="eyebrow">Черновик</p>
         <h1 id="draft-title">Добавление издержки</h1>
     </header>
 
-    <form class="draft-form">
-        <fieldset class="media-fields">
-            <legend>Медиа</legend>
-            <label class="file-field">
-                <span>Изображение</span>
-                <input type="file" accept="image/png,image/jpeg" name="expense_image">
-                <img src="{{ draft.expense_image_url }}" alt="Превью: {{ draft.expense_name }}" width="52" height="52">
-            </label>
-            <label class="file-field">
-                <span>Вертикальное видео</span>
-                <input type="file" accept="video/mp4" name="expense_video">
-                <video poster="{{ draft.expense_image_url }}" autoplay muted loop playsinline aria-label="Превью видео: {{ draft.expense_name }}">
-                    <source src="{{ draft.expense_video_url }}" type="video/mp4">
-                </video>
-            </label>
+    {% if error_message %}
+        <p class="validation-error" role="alert">{{ error_message }}</p>
+    {% endif %}
+
+    {% if draft %}
+    <form class="draft-form" method="post" action="/expenses/draft/publish">
+        <fieldset class="media-fields draft-preview">
+            <legend>Сохранённый черновик</legend>
+            <object data="{{ draft.expense_image_url }}" type="image/png" aria-label="Превью: {{ draft.expense_name }}">
+                <img src="/static/media/default_expense.png" alt="Превью: {{ draft.expense_name }}" width="70" height="70">
+            </object>
+            <div>
+                <strong>{{ draft.expense_name }}</strong>
+                <span>Фото и видео в ЛР2 не передаются на сервер</span>
+            </div>
         </fieldset>
 
-        <label class="form-field">
-            <span>Название</span>
-            <input name="expense_name" value="{{ draft.expense_name }}">
-        </label>
         <label class="form-field description-field">
             <span>Описание</span>
-            <textarea name="expense_description">{{ draft.expense_description }}</textarea>
+            <textarea name="expense_description" required>{{ draft.expense_description }}</textarea>
         </label>
         <div class="field-row">
             <label class="form-field">
                 <span>Вид издержек</span>
-                <select name="expense_behavior">
+                <select name="expense_behavior" required>
                     <option value="fixed"{% if draft.expense_behavior == 'fixed' %} selected{% endif %}>Постоянные</option>
                     <option value="variable"{% if draft.expense_behavior == 'variable' %} selected{% endif %}>Переменные</option>
                 </select>
             </label>
             <label class="form-field code-field">
                 <span>Код издержки</span>
-                <input type="number" name="expense_code" min="0" value="{{ draft.expense_code }}">
+                <input type="number" name="expense_code" min="0" value="{{ draft.expense_code or '' }}" required>
             </label>
         </div>
+        <button class="primary-action" type="submit">Опубликовать</button>
     </form>
-{% else %}
-    <div class="screen-message">{{ empty_message }}</div>
-{% endif %}
+    {% else %}
+    <form class="draft-form" method="post" action="/expenses/draft">
+        <fieldset class="media-fields">
+            <legend>Медиа</legend>
+            <label class="file-field">
+                <span>Изображение</span>
+                <input type="file" accept="image/png,image/jpeg" required>
+                <img src="/static/media/default_expense.png" alt="Изображение по умолчанию" width="52" height="52">
+            </label>
+            <label class="file-field">
+                <span>Вертикальное видео</span>
+                <input type="file" accept="video/mp4" required>
+                <video poster="/static/media/default_expense.png" autoplay muted loop playsinline aria-label="Видео по умолчанию">
+                    <source src="/static/media/default_expense.mp4" type="video/mp4">
+                </video>
+            </label>
+        </fieldset>
+
+        <label class="form-field">
+            <span>Название</span>
+            <input name="expense_name" maxlength="100" required>
+        </label>
+        <button class="primary-action" type="submit">Далее</button>
+    </form>
+    {% endif %}
 </section>
 {% endblock %}

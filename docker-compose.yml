@@ -1,4 +1,30 @@
 services:
+  postgres:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: "${DB_USER:?Set DB_USER in .env}"
+      POSTGRES_PASSWORD: "${DB_PASSWORD:?Set DB_PASSWORD in .env}"
+      POSTGRES_DB: "${DB_NAME:?Set DB_NAME in .env}"
+    ports:
+      - "127.0.0.1:${DB_PORT:-15432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  adminer:
+    image: adminer:latest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8081:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
   minio:
     image: quay.io/minio/minio:latest
     command: ["server", "/data", "--console-address", ":9001"]
@@ -33,5 +59,7 @@ services:
         mc anonymous get local/expense-items
 
 volumes:
+  postgres_data:
+    name: expense_postgres_data
   minio_data:
     name: minio_data

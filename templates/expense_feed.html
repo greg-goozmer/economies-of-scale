@@ -10,6 +10,7 @@
 {% elif expense %}
     <video class="feed-video" autoplay muted loop playsinline poster="{{ expense.expense_image_url }}" aria-label="Видео: {{ expense.expense_name }}">
         <source src="{{ expense.expense_video_url }}" type="video/mp4">
+        <source src="/static/media/default_expense.mp4" type="video/mp4">
     </video>
     <div class="feed-shade" aria-hidden="true"></div>
 

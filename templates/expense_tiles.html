@@ -33,19 +33,26 @@
     <p class="result-count">Найдено: {{ expenses|length }}</p>
     <div class="expense-grid">
     {% for expense in expenses %}
-        <a class="expense-card" href="/expenses/feed?expense_id={{ expense.expense_id }}" aria-label="{{ expense.expense_name }}">
-            <img src="{{ expense.expense_image_url }}" alt="" width="158" height="74">
-            <span class="expense-card__body">
-                <strong>{{ expense.expense_name }}</strong>
-                <span class="expense-card__meta">
-                    <span>Код {{ expense.expense_code_display }}</span>
-                    <span class="card-likes" aria-label="Лайков: {{ expense.like_count }}">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 10c0 5.65-7 10-7 10z"/></svg>
-                        {{ expense.like_count }}
+        <article class="expense-card">
+            <a class="expense-card__link" href="/expenses/feed?expense_id={{ expense.expense_id }}" aria-label="{{ expense.expense_name }}">
+                <object data="{{ expense.expense_image_url }}" type="image/png" tabindex="-1">
+                    <img src="/static/media/default_expense.png" alt="" width="158" height="74">
+                </object>
+                <span class="expense-card__body">
+                    <strong>{{ expense.expense_name }}</strong>
+                    <span class="expense-card__meta">
+                        <span>Код {{ expense.expense_code_display }}</span>
+                        <span class="card-likes" aria-label="Лайков: {{ expense.like_count }}">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 10c0 5.65-7 10-7 10z"/></svg>
+                            {{ expense.like_count }}
+                        </span>
                     </span>
                 </span>
-            </span>
-        </a>
+            </a>
+            <form method="post" action="/expenses/{{ expense.expense_id }}/delete">
+                <button class="delete-expense" type="submit">Удалить</button>
+            </form>
+        </article>
     {% endfor %}
     </div>
 </section>
