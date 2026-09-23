@@ -13,16 +13,27 @@
 
     {% if draft %}
     <form class="draft-form" method="post" action="/expenses/draft/publish">
-        <fieldset class="media-fields draft-preview">
-            <legend>Сохранённый черновик</legend>
-            <object data="{{ draft.expense_image_url }}" type="image/png" aria-label="Превью: {{ draft.expense_name }}">
-                <img src="/static/media/default_expense.png" alt="Превью: {{ draft.expense_name }}" width="70" height="70">
-            </object>
-            <div>
-                <strong>{{ draft.expense_name }}</strong>
-                <span>Фото и видео в ЛР2 не передаются на сервер</span>
-            </div>
+        <fieldset class="media-fields">
+            <legend>Медиа</legend>
+            <label class="file-field">
+                <span>Изображение</span>
+                <input type="file" accept="image/png,image/jpeg">
+                <img src="{{ draft.expense_image_url }}" alt="Превью: {{ draft.expense_name }}" width="52" height="52">
+            </label>
+            <label class="file-field">
+                <span>Вертикальное видео</span>
+                <input type="file" accept="video/mp4">
+                <video poster="{{ draft.expense_image_url }}" autoplay muted loop playsinline aria-label="Превью видео: {{ draft.expense_name }}">
+                    <source src="{{ draft.expense_video_url }}" type="video/mp4">
+                    <source src="/static/media/default_expense.mp4" type="video/mp4">
+                </video>
+            </label>
         </fieldset>
+
+        <label class="form-field">
+            <span>Название</span>
+            <input value="{{ draft.expense_name }}" readonly>
+        </label>
 
         <label class="form-field description-field">
             <span>Описание</span>
