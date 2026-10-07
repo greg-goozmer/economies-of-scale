@@ -7,6 +7,11 @@ class Settings(BaseSettings):
     DB_USER: str
     DB_PASSWORD: str
     DB_NAME: str
+    MINIO_ROOT_USER: str
+    MINIO_ROOT_PASSWORD: str
+    MINIO_ENDPOINT: str = "127.0.0.1:9000"
+    MINIO_PUBLIC_URL: str = "http://localhost:9000"
+    MINIO_BUCKET: str = "costs"
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 

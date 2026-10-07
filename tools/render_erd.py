@@ -38,7 +38,7 @@ def draw_entity(name, x, y, width):
     for i, column in enumerate(columns):
         baseline = y + 47 + i * row
         tags = [flag for flag, key in (("PK", "primaryKey"), ("FK", "foreignKey"), ("N", "nullable"), ("U", "unique"))
-                if (not column[key] if key == "nullable" else column[key])]
+                if column[key]]
         ctype = column["type"] + (f'({column["length"]})' if column.get("length") else "")
         parts.append(f'<text x="{x+6}" y="{baseline}" font-family="Arial" font-size="11" fill="#365a7d">{escape(" ".join(tags))}</text>')
         parts.append(f'<text x="{x+marker_width+7}" y="{baseline}" font-family="Arial" font-size="12">{escape(column["name"])}</text>')

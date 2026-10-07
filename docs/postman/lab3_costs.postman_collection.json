@@ -1,0 +1,187 @@
+{
+  "info": {
+    "name": "ЛР3 — Издержки: 10 запросов",
+    "description": "Выполнять по порядку. Файлы в запросе 3 можно повторно выбрать из docs/postman/fixtures.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:8000"
+    },
+    {
+      "key": "costId",
+      "value": ""
+    },
+    {
+      "key": "feedId",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "01 Список всех опубликованных",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/costs"
+      }
+    },
+    {
+      "name": "02 Фильтрация по коду",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/costs?min_cost_code=20&max_cost_code=26"
+      }
+    },
+    {
+      "name": "03 Создать черновик с файлами",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": "{{baseUrl}}/api/costs",
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "cost_name",
+              "value": "Тестовая издержка ЛР3",
+              "type": "text"
+            },
+            {
+              "key": "image",
+              "src": "C:\\Users\\ADM\\Projects\\economies-of-scale\\docs\\postman\\fixtures\\example_cost.png",
+              "type": "file"
+            },
+            {
+              "key": "video",
+              "src": "C:\\Users\\ADM\\Projects\\economies-of-scale\\docs\\postman\\fixtures\\example_cost.mp4",
+              "type": "file"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.collectionVariables.set('costId', pm.response.json().cost_id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "04 Получить свой черновик",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/costs/draft"
+      }
+    },
+    {
+      "name": "05 Опубликовать черновик",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/costs/{{costId}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"cost_description\": \"Проверка публикации карточки\", \"cost_behavior\": \"fixed\", \"cost_code\": 31}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "06 Лента без ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/costs/feed"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.collectionVariables.set('feedId', pm.response.json().cost_id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "07 Следующая карточка",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/costs/feed?cost_id={{feedId}}&next=true"
+      }
+    },
+    {
+      "name": "08 Поставить лайк",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/costs/{{costId}}/likes",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"is_liked\": 1}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "09 Логически удалить свою карточку",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": "{{baseUrl}}/api/costs/{{costId}}"
+      }
+    },
+    {
+      "name": "10 Зарегистрировать пользователя",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/users",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"user_name\": \"lab3_demo_{{$timestamp}}\", \"password\": \"DemoPass123\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

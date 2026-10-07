@@ -1,12 +1,7 @@
-from pathlib import Path
-
 from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
 
-from api.cost_handlers import router as cost_router
-
-
-BASE_DIR = Path(__file__).resolve().parent
+from api.cost_api import router as cost_router
+from api.user_api import router as user_router
 
 app = FastAPI(
     docs_url=None,
@@ -14,9 +9,5 @@ app = FastAPI(
     openapi_url=None,
 )
 
-app.mount(
-    "/static",
-    StaticFiles(directory=BASE_DIR / "static"),
-    name="static",
-)
 app.include_router(cost_router)
+app.include_router(user_router)
