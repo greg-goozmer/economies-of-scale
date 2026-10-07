@@ -8,8 +8,8 @@ from sqlalchemy.ext.asyncio import async_engine_from_config
 
 from core.config import settings
 from db.base import Base
-from models.expense_item import ExpenseItem
-from models.expense_like import ExpenseLike
+from models.cost import Cost
+from models.cost_like import CostLike
 from models.user import User
 
 

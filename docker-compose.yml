@@ -54,12 +54,12 @@ services:
         until mc alias set local http://minio:9000 "$${MINIO_ROOT_USER}" "$${MINIO_ROOT_PASSWORD}"; do
           sleep 1
         done
-        mc mb --ignore-existing local/expense-items
-        mc anonymous set download local/expense-items
-        mc anonymous get local/expense-items
+        mc mb --ignore-existing local/costs
+        mc anonymous set download local/costs
+        mc anonymous get local/costs
 
 volumes:
   postgres_data:
-    name: expense_postgres_data
+    name: cost_postgres_data
   minio_data:
     name: minio_data

@@ -1,6 +1,6 @@
-from models.expense_item import ExpenseItem
-from models.expense_like import ExpenseLike
+from models.cost import Cost
+from models.cost_like import CostLike
 from models.user import User
 
 
-__all__ = ["ExpenseItem", "ExpenseLike", "User"]
+__all__ = ["Cost", "CostLike", "User"]

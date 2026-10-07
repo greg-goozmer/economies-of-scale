@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Масштаб{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/expenses.css') }}?v=database-2">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/costs.css') }}?v=database-3">
 </head>
 <body>
     <div class="app-shell">
@@ -15,7 +15,7 @@
         <nav class="bottom-nav" aria-label="Основная навигация">
             <a
                 class="bottom-nav__item{% if active_tab == 'feed' %} is-active{% endif %}"
-                href="/expenses/feed"
+                href="/costs/feed"
                 {% if active_tab == 'feed' %}aria-current="page"{% endif %}
             >
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.5h14v13H5zM8 9h8M8 12h8M8 15h5"/></svg>
@@ -23,7 +23,7 @@
             </a>
             <a
                 class="bottom-nav__item{% if active_tab == 'draft' %} is-active{% endif %}"
-                href="/expenses/draft"
+                href="/costs/draft"
                 {% if active_tab == 'draft' %}aria-current="page"{% endif %}
             >
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
@@ -31,7 +31,7 @@
             </a>
             <a
                 class="bottom-nav__item{% if active_tab == 'tiles' %} is-active{% endif %}"
-                href="/expenses"
+                href="/costs"
                 {% if active_tab == 'tiles' %}aria-current="page"{% endif %}
             >
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h5v5H5zM14 5h5v5h-5zM5 14h5v5H5zM14 14h5v5h-5z"/></svg>

@@ -22,6 +22,6 @@ SQL включает DDL для структуры, DML для данных, DCL
 - PostgreSQL — хранилище.
 - `models/` — ORM-модели.
 - `alembic/versions/` — DDL-миграции.
-- `api/expense_handlers.py` — HTTP-методы и DML.
+- `api/cost_handlers.py` — HTTP-методы и DML.
 - `templates/` — серверное представление.
 - Логическое удаление выполнено сырым `UPDATE`, создание и публикация — ORM.

@@ -4,7 +4,7 @@
 
 ## Что реализовано
 
-- Три таблицы: `users`, `expense_items`, `expense_likes`.
+- Три таблицы: `users`, `costs`, `cost_likes`.
 - Три `GET`-метода: лента, черновик и плитка.
 - `POST` создания черновика и `POST` публикации через ORM SQLAlchemy.
 - `POST` логического удаления через сырой SQL `UPDATE`.
@@ -31,8 +31,8 @@ docker compose up -d
 Стартовые данные можно выполнить в Adminer из файла `db/seed.sql` или загрузить командой:
 
 ```powershell
-docker compose cp db/seed.sql postgres:/tmp/expense_seed.sql
-docker compose exec postgres psql -U expense_app -d expense_scale_db -f /tmp/expense_seed.sql
+docker compose cp db/seed.sql postgres:/tmp/cost_seed.sql
+docker compose exec postgres psql -U cost_app -d cost_scale_db -f /tmp/cost_seed.sql
 ```
 
 Запуск FastAPI:
@@ -43,9 +43,9 @@ docker compose exec postgres psql -U expense_app -d expense_scale_db -f /tmp/exp
 
 Адреса:
 
-- лента: <http://localhost:8000/expenses/feed>;
-- добавление: <http://localhost:8000/expenses/draft>;
-- плитка: <http://localhost:8000/expenses>;
+- лента: <http://localhost:8000/costs/feed>;
+- добавление: <http://localhost:8000/costs/draft>;
+- плитка: <http://localhost:8000/costs>;
 - Adminer: <http://localhost:8081>;
 - MinIO Console: <http://localhost:9001>.
 
@@ -55,18 +55,18 @@ docker compose exec postgres psql -U expense_app -d expense_scale_db -f /tmp/exp
 
 | Метод | Адрес | Назначение |
 |---|---|---|
-| `GET` | `/expenses/feed` | Получить одну опубликованную издержку. |
-| `GET` | `/expenses/draft` | Получить черновик текущего пользователя. |
-| `GET` | `/expenses` | Получить плитку с фильтром по коду. |
-| `POST` | `/expenses/draft` | Создать черновик через ORM. |
-| `POST` | `/expenses/draft/publish` | Опубликовать черновик через ORM. |
-| `POST` | `/expenses/{expense_id}/delete` | Логически удалить запись сырым SQL. |
+| `GET` | `/costs/feed` | Получить одну опубликованную издержку. |
+| `GET` | `/costs/draft` | Получить черновик текущего пользователя. |
+| `GET` | `/costs` | Получить плитку с фильтром по коду. |
+| `POST` | `/costs/draft` | Создать черновик через ORM. |
+| `POST` | `/costs/draft/publish` | Опубликовать черновик через ORM. |
+| `POST` | `/costs/{cost_id}/delete` | Логически удалить запись сырым SQL. |
 
-Переход по ленте: `/expenses/feed?expense_id=3&next=true`. Фильтрация: `/expenses?min_expense_code=20&max_expense_code=26`.
+Переход по ленте: `/costs/feed?cost_id=3&next=true`. Фильтрация: `/costs?min_cost_code=20&max_cost_code=26`.
 
 ## База данных
 
-ER-диаграмма находится в `docs/expense_database.mdj` и открывается в StarUML. Каскадное удаление не используется. Связь пользователей и лайков к издержкам реализована отдельной таблицей многие-ко-многим.
+ER-диаграмма находится в `docs/costs_database.mdj` и открывается в StarUML. Каскадное удаление не используется. Связь пользователей и лайков к издержкам реализована отдельной таблицей многие-ко-многим.
 
 DDL создаётся миграцией Alembic:
 
@@ -82,7 +82,7 @@ DDL создаётся миграцией Alembic:
 1. Ветку `database` и перенос исправлений ЛР1.
 2. ER-диаграмму, три таблицы и данные через Adminer.
 3. Alembic-миграцию и SQLAlchemy-модели.
-4. Все три страницы и шесть методов в `api/expense_handlers.py`.
+4. Все три страницы и шесть методов в `api/cost_handlers.py`.
 5. Что лента выполняет запрос с `LIMIT 1`.
 6. Создание черновика кнопкой «Далее», затем публикацию.
 7. Логическое удаление: строка остаётся в БД со статусом `deleted`.
