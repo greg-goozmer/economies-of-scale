@@ -1,4 +1,17 @@
 services:
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "127.0.0.1:${REDIS_PORT:-16379}:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
   postgres:
     image: postgres:15-alpine
     restart: unless-stopped
@@ -59,6 +72,8 @@ services:
         mc anonymous get local/costs
 
 volumes:
+  redis_data:
+    name: cost_redis_data
   postgres_data:
     name: cost_postgres_data
   minio_data:

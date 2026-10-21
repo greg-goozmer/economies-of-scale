@@ -6,7 +6,7 @@ from sqlalchemy import case, func, select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from api.current_user import current_user_id
+from api.current_user import current_user_id, optional_user_id
 from api.media import remove_cost_media, upload_cost_media
 from db.session import get_db
 from models.cost import Cost
@@ -17,7 +17,7 @@ from schemas.cost import CostLikeChange, CostLikeRead, CostPublish, CostRead
 router = APIRouter(prefix="/api/costs", tags=["costs"])
 
 
-def _cost_query(user_id: int):
+def _cost_query(user_id: int | None):
     like_count = (select(func.count(CostLike.cost_like_id))
                   .where(CostLike.cost_id == Cost.cost_id)
                   .correlate(Cost).scalar_subquery())
@@ -27,7 +27,7 @@ def _cost_query(user_id: int):
     return select(Cost, like_count.label("like_count"), liked.label("liked"))
 
 
-def _read(row, user_id: int) -> CostRead:
+def _read(row, user_id: int | None) -> CostRead:
     cost, like_count, liked = row
     return CostRead(
         cost_id=cost.cost_id,
@@ -52,12 +52,14 @@ async def _get_read(db: AsyncSession, cost_id: int, user_id: int) -> CostRead:
     return _read(row, user_id)
 
 
-@router.get("", response_model=list[CostRead])
+@router.get("", response_model=list[CostRead], summary="Список издержек с фильтром",
+            operation_id="list_costs", description="Доступен гостю. Только опубликованные карточки. "
+            "min_cost_code и max_cost_code — включительный диапазон; is_owner — 0/1.")
 async def list_costs(
     min_cost_code: int | None = Query(None, ge=0),
     max_cost_code: int | None = Query(None, ge=0),
     db: AsyncSession = Depends(get_db),
-    user_id: int = Depends(current_user_id),
+    user_id: int | None = Depends(optional_user_id),
 ):
     if min_cost_code is not None and max_cost_code is not None and min_cost_code > max_cost_code:
         raise HTTPException(422, "Minimum cost code exceeds maximum")
@@ -70,12 +72,14 @@ async def list_costs(
     return [_read(row, user_id) for row in rows]
 
 
-@router.get("/feed", response_model=CostRead | None)
+@router.get("/feed", response_model=CostRead | None, summary="Одна карточка ленты",
+            operation_id="get_cost_feed", description="Доступен гостю. Без cost_id — первая карточка; "
+            "cost_id и next=true — следующая по кругу. is_liked — 0/1 для текущего пользователя.")
 async def get_cost_feed(
     cost_id: int | None = Query(None, ge=1),
     next: bool = False,
     db: AsyncSession = Depends(get_db),
-    user_id: int = Depends(current_user_id),
+    user_id: int | None = Depends(optional_user_id),
 ):
     statement = _cost_query(user_id).where(Cost.cost_status == "published")
     if cost_id is None:
@@ -95,7 +99,9 @@ async def get_cost_feed(
     return _read(row, user_id) if row is not None else None
 
 
-@router.get("/draft", response_model=CostRead | None)
+@router.get("/draft", response_model=CostRead | None, summary="Свой черновик",
+            operation_id="get_cost_draft", description="Требует сессии. Пользователь определяется "
+            "по Redis; ID карточки не передаётся.", responses={401: {"description": "Нет сессии"}})
 async def get_cost_draft(
     db: AsyncSession = Depends(get_db),
     user_id: int = Depends(current_user_id),
@@ -108,7 +114,11 @@ async def get_cost_draft(
     return _read(row, user_id) if row is not None else None
 
 
-@router.post("", response_model=CostRead, status_code=status.HTTP_201_CREATED)
+@router.post("", response_model=CostRead, status_code=status.HTTP_201_CREATED,
+             summary="Создать издержку с фото и видео", operation_id="create_cost",
+             description="Три поля form-data: cost_name, image, video (файлы). Создатель, ID, "
+             "статус draft и дата задаются сервером. Файлы сохраняются в MinIO.",
+             responses={401: {"description": "Нет сессии"}, 409: {"description": "Уже есть черновик"}})
 async def create_cost(
     cost_name: str = Form(min_length=1, max_length=100),
     image: UploadFile = File(),
@@ -141,7 +151,11 @@ async def create_cost(
     return await _get_read(db, cost.cost_id, user_id)
 
 
-@router.put("/{cost_id}", response_model=CostRead)
+@router.put("/{cost_id}", response_model=CostRead, summary="Опубликовать свою издержку",
+            operation_id="publish_cost", description="Три входных поля JSON: cost_description, "
+            "cost_behavior и cost_code. Публикуется только собственный черновик. "
+            "Статус published и дата формирования устанавливаются сервером.",
+            responses={401: {"description": "Нет сессии"}, 404: {"description": "Свой черновик не найден"}})
 async def publish_cost(
     cost_id: int,
     payload: CostPublish,
@@ -166,7 +180,10 @@ async def publish_cost(
     return await _get_read(db, cost_id, user_id)
 
 
-@router.delete("/{cost_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/{cost_id}", status_code=status.HTTP_204_NO_CONTENT,
+               summary="Логически удалить свою издержку", operation_id="delete_cost",
+               description="Требует сессии и владения карточкой. Меняет статус на deleted; строка и файлы остаются.",
+               responses={401: {"description": "Нет сессии"}, 404: {"description": "Своя карточка не найдена"}})
 async def delete_cost(
     cost_id: int,
     db: AsyncSession = Depends(get_db),
@@ -182,7 +199,10 @@ async def delete_cost(
     await db.commit()
 
 
-@router.post("/{cost_id}/likes", response_model=CostLikeRead)
+@router.post("/{cost_id}/likes", response_model=CostLikeRead,
+             summary="Поставить или убрать свой лайк", operation_id="change_cost_like",
+             description="JSON is_liked: 1 — поставить, 0 — убрать. Пользователь берётся из Redis. "
+             "Лайки разрешены только у опубликованных карточек.", responses={401: {"description": "Нет сессии"}})
 async def change_cost_like(
     cost_id: int,
     payload: CostLikeChange,

@@ -1,0 +1,425 @@
+{
+  "info": {
+    "name": "ЛР4 — Издержки — cookie и Redis",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Cookie скопировать из Application браузера в session_cookie вручную. Не запускать всю коллекцию Runner: публикация/удаление меняют собственную тестовую карточку. Файлы выбрать в form-data."
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "session_cookie",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "cost_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "user_name",
+      "value": "student4",
+      "type": "string"
+    },
+    {
+      "key": "password",
+      "value": "Lab4-demo-2026!",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Подготовка — регистрация",
+      "protocolProfileBehavior": {
+        "disableCookies": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/users",
+        "auth": {
+          "type": "noauth"
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user_name\": \"{{user_name}}\",\n  \"password\": \"{{password}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "01 Вход (для скрина выполнить в Swagger)",
+      "protocolProfileBehavior": {
+        "disableCookies": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/users/auth",
+        "auth": {
+          "type": "noauth"
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user_name\": \"{{user_name}}\",\n  \"password\": \"{{password}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "04 Список с cookie",
+      "protocolProfileBehavior": {
+        "disableCookies": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "cost_session={{session_cookie}}"
+          }
+        ],
+        "url": "{{base_url}}/api/costs?min_cost_code=20&max_cost_code=40",
+        "auth": {
+          "type": "noauth"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "05 Список без cookie",
+      "protocolProfileBehavior": {
+        "disableCookies": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/api/costs?min_cost_code=20&max_cost_code=40",
+        "auth": {
+          "type": "noauth"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Подготовка — свой черновик",
+      "protocolProfileBehavior": {
+        "disableCookies": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "cost_session={{session_cookie}}"
+          }
+        ],
+        "url": "{{base_url}}/api/costs/draft",
+        "auth": {
+          "type": "noauth"
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "if (pm.response.code < 300) {",
+              "  const card = pm.response.json();",
+              "  if (card && card.cost_id) pm.collectionVariables.set('cost_id', String(card.cost_id));",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Подготовка — создать черновик (выбрать 2 файла)",
+      "protocolProfileBehavior": {
+        "disableCookies": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "cost_session={{session_cookie}}"
+          }
+        ],
+        "url": "{{base_url}}/api/costs",
+        "auth": {
+          "type": "noauth"
+        },
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "cost_name",
+              "value": "Аренда кофемашины ЛР4",
+              "type": "text"
+            },
+            {
+              "key": "image",
+              "type": "file",
+              "src": ""
+            },
+            {
+              "key": "video",
+              "type": "file",
+              "src": ""
+            }
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "if (pm.response.code < 300) {",
+              "  const card = pm.response.json();",
+              "  if (card && card.cost_id) pm.collectionVariables.set('cost_id', String(card.cost_id));",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "06 Публикация без cookie",
+      "protocolProfileBehavior": {
+        "disableCookies": true
+      },
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/costs/{{cost_id}}",
+        "auth": {
+          "type": "noauth"
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cost_description\": \"Постоянные издержки на аренду оборудования\",\n  \"cost_behavior\": \"fixed\",\n  \"cost_code\": 31\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "07 Публикация с cookie",
+      "protocolProfileBehavior": {
+        "disableCookies": true
+      },
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "cost_session={{session_cookie}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/costs/{{cost_id}}",
+        "auth": {
+          "type": "noauth"
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cost_description\": \"Постоянные издержки на аренду оборудования\",\n  \"cost_behavior\": \"fixed\",\n  \"cost_code\": 31\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Лента без ID",
+      "protocolProfileBehavior": {
+        "disableCookies": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "cost_session={{session_cookie}}"
+          }
+        ],
+        "url": "{{base_url}}/api/costs/feed",
+        "auth": {
+          "type": "noauth"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Следующая издержка",
+      "protocolProfileBehavior": {
+        "disableCookies": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "cost_session={{session_cookie}}"
+          }
+        ],
+        "url": "{{base_url}}/api/costs/feed?cost_id={{cost_id}}&next=true",
+        "auth": {
+          "type": "noauth"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Лайк",
+      "protocolProfileBehavior": {
+        "disableCookies": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "cost_session={{session_cookie}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/costs/{{cost_id}}/likes",
+        "auth": {
+          "type": "noauth"
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"is_liked\": 1\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Отмена лайка",
+      "protocolProfileBehavior": {
+        "disableCookies": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "cost_session={{session_cookie}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/costs/{{cost_id}}/likes",
+        "auth": {
+          "type": "noauth"
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"is_liked\": 0\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Удаление СВОЕЙ тестовой карточки (soft delete)",
+      "protocolProfileBehavior": {
+        "disableCookies": true
+      },
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "cost_session={{session_cookie}}"
+          }
+        ],
+        "url": "{{base_url}}/api/costs/{{cost_id}}",
+        "auth": {
+          "type": "noauth"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Выход — после всех скринов",
+      "protocolProfileBehavior": {
+        "disableCookies": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "cost_session={{session_cookie}}"
+          }
+        ],
+        "url": "{{base_url}}/api/users/logout",
+        "auth": {
+          "type": "noauth"
+        }
+      },
+      "response": []
+    }
+  ]
+}
