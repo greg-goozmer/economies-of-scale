@@ -59,5 +59,3 @@ SELECT cost_id, cost_name, cost_status, cost_image_url, cost_video_url FROM cost
 SELECT cost_like_id, user_id, cost_id FROM cost_likes ORDER BY cost_like_id DESC;
 SELECT user_id, user_name, user_password_hash FROM users ORDER BY user_id DESC;
 ```
-
-Исправления предыдущей работы находятся в ветке `database`; мини-отчёт — `docs/lab2_corrections_report.docx`.

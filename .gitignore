@@ -206,6 +206,13 @@ tempCodeRunnerFile.py
 # Ruff stuff:
 .ruff_cache/
 
+# Local screenshots and generated lab reports; editable sources stay tracked.
+/docs/screenshots/
+/docs/diagrams/
+/docs/*report*.docx
+/tmp/
+/local_lab_artifacts/
+
 # PyPI configuration file
 .pypirc
 

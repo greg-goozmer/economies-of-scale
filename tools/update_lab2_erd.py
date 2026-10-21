@@ -51,9 +51,9 @@ for column in entities["costs"]["columns"]:
 
 # Compact arrangement that fits on one portrait A4 sheet when exported.
 layout = {
-    "users": (40, 45, 295),
-    "costs": (370, 40, 335),
-    "cost_likes": (80, 310, 310),
+    "users": (40, 45, 270),
+    "costs": (345, 40, 305),
+    "cost_likes": (80, 310, 280),
 }
 for name, (left, top, width) in layout.items():
     entity = entities[name]
@@ -69,9 +69,9 @@ for name, (left, top, width) in layout.items():
 
 relationships = [v for v in diagram["ownedViews"] if v["_type"] == "ERDRelationshipView"]
 routes = [
-    "335:87;370:87",             # users -> costs
+    "310:87;345:87",             # users -> costs
     "185:121;185:310",           # users -> cost_likes
-    "537:236;537:349;390:349",   # costs -> cost_likes
+    "497:236;497:349;360:349",   # costs -> cost_likes
 ]
 for view, route in zip(relationships, routes):
     view["points"] = route
