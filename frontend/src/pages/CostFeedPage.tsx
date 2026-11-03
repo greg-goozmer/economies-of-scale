@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { CostVideo } from '../components/CostMedia';
+import { CostIcon } from '../components/CostIcon';
 import { COSTS_MOCK, nextCost, type CostItem } from '../modules/costsMock';
 
 export function CostFeedPage({ costs }: { costs: CostItem[] }) {
@@ -17,21 +18,26 @@ export function CostFeedPage({ costs }: { costs: CostItem[] }) {
     document.title = cost ? `${cost.cost_name} — Масштаб` : 'Издержка не найдена — Масштаб';
     return () => { document.title = 'Масштаб — издержки'; };
   }, [costId, cost]);
-  if (!cost) return <section className="cost-tiles"><h1>Издержка не найдена</h1><Link to="/costs">Вернуться к плитке</Link></section>;
+  if (!cost) return <section className="screen-message"><h1>Издержка не найдена</h1><Link to="/costs">Вернуться к плитке</Link></section>;
   const following = nextCost(costs, cost.cost_id);
-  return <section className="cost-feed">
+  return <section className="feed-screen" aria-label="Лента издержек">
     <CostVideo key={cost.cost_id} url={cost.cost_video_url} image={cost.cost_image_url} />
-    <div className="cost-feed-shade" />
-    <div className="cost-feed-brand">МАСШТАБ ↗ <span>Лента издержек</span></div>
-    <div className="cost-feed-actions">
-      <Button variant="dark" aria-label="Параметры издержки" aria-expanded={parameters} onClick={() => setParameters(!parameters)}>⚙</Button>
-      <div className="cost-feed-likes" title="Лайки доступны после входа в ЛР6">♡<small>{cost.like_count}</small></div>
+    <div className="feed-shade" aria-hidden="true" />
+    <div className="feed-copy"><h1>{cost.cost_name}</h1>
+      <p className="feed-parameters">{cost.cost_behavior === 'fixed' ? 'Постоянные' : 'Переменные'} · Код {cost.cost_code}</p>
+      <p className={expanded ? 'description-full' : 'description-preview'}>{cost.cost_description}</p>
+      <Button className="description-toggle" aria-expanded={expanded} onClick={() => setExpanded(!expanded)}>{expanded ? 'Свернуть' : 'Ещё'}</Button>
     </div>
-    {parameters && <div className="cost-parameters"><b>Параметры</b><p>Код издержки: {cost.cost_code}</p><p>Тип: {cost.cost_behavior === 'fixed' ? 'Постоянные' : 'Переменные'}</p></div>}
-    <div className="cost-feed-copy"><small>ВИДЫ ИЗДЕРЖЕК</small><h1>{cost.cost_name}</h1>
-      <p className={expanded ? '' : 'cost-description-short'}>{cost.cost_description}</p>
-      <Button variant="link" className="cost-more" onClick={() => setExpanded(!expanded)}>{expanded ? 'Свернуть' : 'Ещё'}</Button>
-      <Button className="cost-next" disabled={!following} onClick={() => following && navigate(`/costs/feed/${following.cost_id}`)}>Следующая издержка →</Button>
-    </div>
+    <aside className="feed-actions" aria-label="Действия с карточкой">
+      <div className="feed-action" aria-label={`Лайков: ${cost.like_count}`}><span className="feed-action__icon"><CostIcon name="heart" /></span><span className="feed-action__label">{cost.like_count}</span></div>
+      <div className="parameter-disclosure">
+        <Button className="feed-action" aria-label="Параметры издержки" aria-expanded={parameters} onClick={() => setParameters(!parameters)}><span className="feed-action__icon"><CostIcon name="parameters" /></span><span className="feed-action__label">Параметры</span></Button>
+        {parameters && <div className="parameter-panel"><h2>Параметры</h2><dl>
+          <div><dt>Вид издержек</dt><dd>{cost.cost_behavior === 'fixed' ? 'Постоянные' : 'Переменные'}</dd></div>
+          <div><dt>Код издержки</dt><dd>{cost.cost_code}</dd></div>
+        </dl></div>}
+      </div>
+      <Button className="feed-action" aria-label="Следующая издержка" disabled={!following} onClick={() => following && navigate(`/costs/feed/${following.cost_id}`)}><span className="feed-action__icon"><CostIcon name="next" /></span><span className="feed-action__label">Далее</span></Button>
+    </aside>
   </section>;
 }

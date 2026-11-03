@@ -8,19 +8,19 @@ import { CostImage, CostVideo, DEFAULT_COST_IMAGE, DEFAULT_COST_VIDEO } from '..
 const open = (route = '/costs') => render(<MemoryRouter initialEntries={[route]}><App /></MemoryRouter>);
 
 describe('Коллекция издержек', () => {
-  it('пустые границы возвращают все карточки', () => expect(filterCosts(COSTS_MOCK, '', '')).toHaveLength(4));
-  it('диапазон включительный', () => expect(filterCosts(COSTS_MOCK, '20', '25').map(cost => cost.cost_id)).toEqual([1, 3]));
-  it('нижняя граница отдельно', () => expect(filterCosts(COSTS_MOCK, '26', '')).toHaveLength(1));
-  it('верхняя граница отдельно', () => expect(filterCosts(COSTS_MOCK, '', '10')).toHaveLength(1));
-  it('нет результатов', () => expect(filterCosts(COSTS_MOCK, '40', '50')).toHaveLength(0));
-  it('следующая по массиву, а не ID + 1', () => expect(nextCost(COSTS_MOCK, 1)?.cost_id).toBe(3));
-  it('на последней нет следующей', () => expect(nextCost(COSTS_MOCK, 12)).toBeUndefined());
+  it('пустые границы возвращают все карточки', () => expect(filterCosts(COSTS_MOCK, '', '')).toHaveLength(6));
+  it('диапазон включительный', () => expect(filterCosts(COSTS_MOCK, '20', '25').map(cost => cost.cost_id)).toEqual([1, 3, 4]));
+  it('нижняя граница отдельно', () => expect(filterCosts(COSTS_MOCK, '26', '')).toHaveLength(3));
+  it('верхняя граница отдельно', () => expect(filterCosts(COSTS_MOCK, '', '20')).toHaveLength(2));
+  it('нет результатов', () => expect(filterCosts(COSTS_MOCK, '45', '50')).toHaveLength(0));
+  it('следующая по массиву, а не ID + 1', () => expect(nextCost([COSTS_MOCK[0], COSTS_MOCK[2]], 1)?.cost_id).toBe(3));
+  it('на последней нет следующей', () => expect(nextCost(COSTS_MOCK, 6)).toBeUndefined());
 });
 
 describe('Гостевой интерфейс', () => {
-  it('показывает четыре карточки и две недоступные вкладки', () => {
+  it('показывает шесть карточек и две недоступные вкладки', () => {
     open();
-    expect(screen.getByText('Найдено: 4')).toBeInTheDocument();
+    expect(screen.getByText('Найдено: 6')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /Добавление/ })).toBeDisabled();
     expect(screen.getByRole('button', { name: /Вход/ })).toBeDisabled();
   });
@@ -28,11 +28,22 @@ describe('Гостевой интерфейс', () => {
     open();
     fireEvent.change(screen.getByLabelText('Код издержки от'), { target: { value: '25' } });
     fireEvent.change(screen.getByLabelText('Код издержки до'), { target: { value: '26' } });
-    expect(screen.getByText('Найдено: 4')).toBeInTheDocument();
+    expect(screen.getByText('Найдено: 6')).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Применить' }));
     expect(screen.getByText('Найдено: 2')).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Сбросить' }));
-    expect(screen.getByText('Найдено: 4')).toBeInTheDocument();
+    expect(screen.getByText('Найдено: 6')).toBeInTheDocument();
+  });
+  it('сохраняет границы фильтра после возврата из ленты', () => {
+    open();
+    fireEvent.change(screen.getByLabelText('Код издержки от'), { target: { value: '25' } });
+    fireEvent.change(screen.getByLabelText('Код издержки до'), { target: { value: '26' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Применить' }));
+    fireEvent.click(screen.getByRole('link', { name: /Аренда кофемашины/ }));
+    fireEvent.click(screen.getByRole('button', { name: 'Плитка' }));
+    expect(screen.getByLabelText('Код издержки от')).toHaveValue(25);
+    expect(screen.getByLabelText('Код издержки до')).toHaveValue(26);
+    expect(screen.getByText('Найдено: 2')).toBeInTheDocument();
   });
   it('не применяет перевёрнутый диапазон', () => {
     open();
@@ -46,14 +57,15 @@ describe('Гостевой интерфейс', () => {
     fireEvent.click(screen.getByRole('link', { name: /Аренда кофемашины/ }));
     expect(screen.getByRole('heading', { name: 'Аренда кофемашины' })).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: /Следующая издержка/ }));
-    expect(screen.getByRole('heading', { name: 'Кофейное зерно' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Подписка для кассы' })).toBeInTheDocument();
   });
   it('раскрывает описание и параметры', () => {
     open('/costs/feed/1');
     fireEvent.click(screen.getByRole('button', { name: 'Ещё' }));
     expect(screen.getByRole('button', { name: 'Свернуть' })).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Параметры издержки' }));
-    expect(screen.getByText('Код издержки: 25')).toBeInTheDocument();
+    expect(screen.getByText('Код издержки')).toBeInTheDocument();
+    expect(screen.getByText('25')).toBeInTheDocument();
   });
   it('открывается по прямой ссылке и показывает отсутствие неизвестного ID', () => {
     open('/costs/feed/999');
