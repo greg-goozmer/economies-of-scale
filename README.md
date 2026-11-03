@@ -1,4 +1,22 @@
-# Масштаб — ЛР4 Авторизация
+# Масштаб — ЛР5 Гостевой React интерфейс
+
+Ветка `react`: фронтенд находится в [frontend](frontend/README.md). Отдельный [репозиторий фронтенда](https://github.com/greg-goozmer/economies-of-scale-frontend/tree/react). Для ЛР5 бэкенд не запускается — используются только mock и локальные медиа.
+
+```powershell
+cd frontend
+npm ci
+npm run dev
+```
+
+Адрес: http://localhost:3000/costs. Проверки: `npm test`, `npm run build`.
+
+- [Порядок десяти скриншотов](frontend/docs/lab5_screenshots.md).
+- [Расчёт аппаратных требований для РПЗ](frontend/docs/lab5_hardware.md).
+- [Контрольные вопросы](frontend/docs/lab5_notes.md).
+- Единый актуальный проект StarUML: `frontend/docs/costs_database.mdj` — прежние диаграммы сохранены, добавлены React компоненты. Исходный `docs/costs_database.mdj` предыдущей ЛР не изменён.
+- Word-файлы РПЗ и списка кадров сохраняются отдельно на рабочем столе, не в Git. Источники: `tools/build_lab5_documents.py`, `tools/build_lab5_model.py`, `tools/render_lab5_figures.py`. SVG для РПЗ — оригинальные схемы из `frontend/docs/figures`, а не отредактированные trial экспорты StarUML.
+
+## Бэкенд ЛР4
 
 Ветка `authentication` продолжает ЛР3 (`rest_api`). FastAPI использует **cookie и серверную сессию Redis**, не JWT. PostgreSQL хранит пользователей, издержки и лайки, MinIO — изображения и видео.
 
