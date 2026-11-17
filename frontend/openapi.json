@@ -1,0 +1,871 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Масштаб — API издержек",
+    "description": "ЛР4. Гость читает опубликованные издержки. После POST /api/users/auth браузер автоматически отправляет HttpOnly cookie cost_session. Создание, черновик, публикация, удаление и лайки требуют сессии Redis.",
+    "version": "4.0.0"
+  },
+  "paths": {
+    "/api/costs": {
+      "get": {
+        "tags": [
+          "costs"
+        ],
+        "summary": "Список издержек с фильтром",
+        "description": "Доступен гостю. Только опубликованные карточки. min_cost_code и max_cost_code — включительный диапазон; is_owner — 0/1.",
+        "operationId": "list_costs",
+        "parameters": [
+          {
+            "name": "min_cost_code",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Min Cost Code"
+            }
+          },
+          {
+            "name": "max_cost_code",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Max Cost Code"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CostRead"
+                  },
+                  "title": "Response List Costs"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "costs"
+        ],
+        "summary": "Создать издержку с фото и видео",
+        "description": "Три поля form-data: cost_name, image, video (файлы). Создатель, ID, статус draft и дата задаются сервером. Файлы сохраняются в MinIO.",
+        "operationId": "create_cost",
+        "security": [
+          {
+            "CostSession": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_create_cost"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CostRead"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Нет сессии"
+          },
+          "409": {
+            "description": "Уже есть черновик"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/costs/feed": {
+      "get": {
+        "tags": [
+          "costs"
+        ],
+        "summary": "Одна карточка ленты",
+        "description": "Доступен гостю. Без cost_id — первая карточка; cost_id и next=true — следующая по кругу. is_liked — 0/1 для текущего пользователя.",
+        "operationId": "get_cost_feed",
+        "parameters": [
+          {
+            "name": "cost_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cost Id"
+            }
+          },
+          {
+            "name": "next",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Next"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/CostRead"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Response Get Cost Feed"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/costs/draft": {
+      "get": {
+        "tags": [
+          "costs"
+        ],
+        "summary": "Свой черновик",
+        "description": "Требует сессии. Пользователь определяется по Redis; ID карточки не передаётся.",
+        "operationId": "get_cost_draft",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/CostRead"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Response Get Cost Draft"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Нет сессии"
+          }
+        },
+        "security": [
+          {
+            "CostSession": []
+          }
+        ]
+      }
+    },
+    "/api/costs/{cost_id}": {
+      "put": {
+        "tags": [
+          "costs"
+        ],
+        "summary": "Опубликовать свою издержку",
+        "description": "Три входных поля JSON: cost_description, cost_behavior и cost_code. Публикуется только собственный черновик. Статус published и дата формирования устанавливаются сервером.",
+        "operationId": "publish_cost",
+        "security": [
+          {
+            "CostSession": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "cost_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Cost Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CostPublish"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CostRead"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Нет сессии"
+          },
+          "404": {
+            "description": "Свой черновик не найден"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "costs"
+        ],
+        "summary": "Логически удалить свою издержку",
+        "description": "Требует сессии и владения карточкой. Меняет статус на deleted; строка и файлы остаются.",
+        "operationId": "delete_cost",
+        "security": [
+          {
+            "CostSession": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "cost_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Cost Id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "401": {
+            "description": "Нет сессии"
+          },
+          "404": {
+            "description": "Своя карточка не найдена"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/costs/{cost_id}/likes": {
+      "post": {
+        "tags": [
+          "costs"
+        ],
+        "summary": "Поставить или убрать свой лайк",
+        "description": "JSON is_liked: 1 — поставить, 0 — убрать. Пользователь берётся из Redis. Лайки разрешены только у опубликованных карточек.",
+        "operationId": "change_cost_like",
+        "security": [
+          {
+            "CostSession": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "cost_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Cost Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CostLikeChange"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CostLikeRead"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Нет сессии"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Регистрация пользователя",
+        "description": "Сохраняет PBKDF2-хеш пароля. Сессию не создаёт.",
+        "operationId": "register_user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegister"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserRead"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Имя уже занято"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/auth": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Вход и создание cookie-сессии",
+        "description": "Проверяет пароль. Возвращает пользователя и Set-Cookie: cost_session. ID пользователя хранится в Redis в течение SESSION_TTL_SECONDS.",
+        "operationId": "authenticate_user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserCredentials"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserRead"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Неверное имя или пароль"
+          },
+          "503": {
+            "description": "Redis недоступен"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/logout": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Выход и удаление сессии",
+        "description": "Удаляет сессию из Redis и cookie из браузера. Повторный выход допустим.",
+        "operationId": "logout_user",
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "CostSession": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Body_create_cost": {
+        "properties": {
+          "cost_name": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Cost Name"
+          },
+          "image": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "Image"
+          },
+          "video": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "Video"
+          }
+        },
+        "type": "object",
+        "required": [
+          "cost_name",
+          "image",
+          "video"
+        ],
+        "title": "Body_create_cost"
+      },
+      "CostLikeChange": {
+        "properties": {
+          "is_liked": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ],
+            "title": "Is Liked"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "is_liked"
+        ],
+        "title": "CostLikeChange"
+      },
+      "CostLikeRead": {
+        "properties": {
+          "cost_id": {
+            "type": "integer",
+            "title": "Cost Id"
+          },
+          "is_liked": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ],
+            "title": "Is Liked"
+          },
+          "like_count": {
+            "type": "integer",
+            "title": "Like Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "cost_id",
+          "is_liked",
+          "like_count"
+        ],
+        "title": "CostLikeRead"
+      },
+      "CostPublish": {
+        "properties": {
+          "cost_description": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Cost Description"
+          },
+          "cost_behavior": {
+            "type": "string",
+            "enum": [
+              "fixed",
+              "variable"
+            ],
+            "title": "Cost Behavior"
+          },
+          "cost_code": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Cost Code"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "cost_description",
+          "cost_behavior",
+          "cost_code"
+        ],
+        "title": "CostPublish"
+      },
+      "CostRead": {
+        "properties": {
+          "cost_id": {
+            "type": "integer",
+            "title": "Cost Id"
+          },
+          "cost_name": {
+            "type": "string",
+            "title": "Cost Name"
+          },
+          "cost_description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cost Description"
+          },
+          "cost_status": {
+            "type": "string",
+            "title": "Cost Status"
+          },
+          "cost_image_url": {
+            "type": "string",
+            "title": "Cost Image Url"
+          },
+          "cost_video_url": {
+            "type": "string",
+            "title": "Cost Video Url"
+          },
+          "cost_behavior": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cost Behavior"
+          },
+          "cost_code": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cost Code"
+          },
+          "cost_created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Cost Created At"
+          },
+          "cost_creator_id": {
+            "type": "integer",
+            "title": "Cost Creator Id"
+          },
+          "cost_formed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cost Formed At"
+          },
+          "like_count": {
+            "type": "integer",
+            "title": "Like Count"
+          },
+          "is_owner": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ],
+            "title": "Is Owner"
+          },
+          "is_liked": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ],
+            "title": "Is Liked"
+          }
+        },
+        "type": "object",
+        "required": [
+          "cost_id",
+          "cost_name",
+          "cost_description",
+          "cost_status",
+          "cost_image_url",
+          "cost_video_url",
+          "cost_behavior",
+          "cost_code",
+          "cost_created_at",
+          "cost_creator_id",
+          "cost_formed_at",
+          "like_count",
+          "is_owner",
+          "is_liked"
+        ],
+        "title": "CostRead"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "UserCredentials": {
+        "properties": {
+          "user_name": {
+            "type": "string",
+            "maxLength": 50,
+            "minLength": 1,
+            "title": "User Name"
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Password"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "user_name",
+          "password"
+        ],
+        "title": "UserCredentials"
+      },
+      "UserRead": {
+        "properties": {
+          "user_id": {
+            "type": "integer",
+            "title": "User Id"
+          },
+          "user_name": {
+            "type": "string",
+            "title": "User Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "user_name"
+        ],
+        "title": "UserRead"
+      },
+      "UserRegister": {
+        "properties": {
+          "user_name": {
+            "type": "string",
+            "maxLength": 50,
+            "minLength": 1,
+            "title": "User Name"
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 8,
+            "title": "Password"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "user_name",
+          "password"
+        ],
+        "title": "UserRegister"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    },
+    "securitySchemes": {
+      "CostSession": {
+        "type": "apiKey",
+        "description": "Cookie выдаётся POST /api/users/auth и проверяется по сессии Redis. В Swagger выполните auth: браузер отправит cookie автоматически.",
+        "in": "cookie",
+        "name": "cost_session"
+      }
+    }
+  }
+}

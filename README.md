@@ -1,3 +1,18 @@
+# Масштаб — ЛР6 Redux Toolkit и Axios
+
+Ветка `codex/redux` содержит интерфейс гостя и создателя издержек с подключением к FastAPI, cookie-сессиями, Redux Toolkit, сгенерированным Axios-клиентом и прокси API/MinIO.
+
+- [Фронтенд ЛР6](https://github.com/greg-goozmer/economies-of-scale-frontend/tree/codex/redux)
+- [Запуск и описание страниц](frontend/README.md)
+- [Порядок 16 скриншотов и диаграмма прецедентов](frontend/docs/lab6_screenshots.md)
+- Общий файл StarUML `docs/costs_database.mdj`, диаграмма «ЛР6 Гость и создатель издержек».
+
+Запустить `docker compose up -d`, затем `python -m uvicorn main:app --host 127.0.0.1 --port 8000`. Во втором терминале `cd frontend`, `npm ci`, `npm run dev`. Адрес http://127.0.0.1:3000/costs.
+
+Проверки фронтенда `npm run build`, `npm test`, `npm run test:e2e`. Для браузерных проверок нужны Chrome и работающие API, Docker и Vite. Тестовые карточки создаются для отдельного пользователя и логически удаляются по завершении.
+
+## Предыдущая ЛР5
+
 # Масштаб — ЛР5 Гостевой React интерфейс
 
 Ветка `react`: фронтенд находится в [frontend](frontend/README.md). Отдельный [репозиторий фронтенда](https://github.com/greg-goozmer/economies-of-scale-frontend/tree/react). Для ЛР5 бэкенд не запускается — используются только mock и локальные медиа.

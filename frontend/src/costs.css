@@ -587,3 +587,26 @@ body { font-family: "YS Text", Arial, sans-serif; line-height: normal; color: va
 .description-full { max-height: 185px; overflow: auto; }
 .description-toggle.btn { color: white; padding: 3px 10px; line-height: 18px; }
 .screen-header h1, .feed-copy h1 { font-weight: 700; }
+
+/* ЛР6. Формы повторяют чёрно-белое оформление каталога. */
+.cost-shell { position: relative; }
+.cost-app-controls { min-width: 0; padding: 0; margin: 0; border: 0; }
+.cost-loading { position: absolute; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; background: rgb(255 255 255 / 72%); color: #111; }
+.cost-offline { margin: 0; padding: 6px 16px; font-size: 10px; background: #fff3cd; }
+.cost-form-screen { padding: 0 16px 24px; }
+.cost-form-screen .screen-header { padding-left: 0; padding-right: 0; }
+.cost-form-screen .form-label { font-size: 12px; margin-bottom: 5px; }
+.cost-form-screen .form-control, .cost-form-screen .form-select { font-size: 13px; border-radius: 10px; }
+.cost-form-screen .form-control:focus, .cost-form-screen .form-select:focus { border-color: #111; box-shadow: 0 0 0 2px #ddd; }
+.cost-form-screen .form-group, .cost-form-screen form > div { margin-bottom: 14px; }
+.cost-primary.btn { width: 100%; margin-top: 12px; border-color: #111; border-radius: 10px; background: #111; color: white; font-size: 13px; }
+.cost-text-button.btn { width: 100%; color: #111; font-size: 12px; }
+.cost-file-preview { position: relative; height: 170px; overflow: hidden; border-radius: 12px; }
+.cost-file-preview .feed-video { width: 100%; height: 100%; }
+.cost-draft-image img { width: 100%; height: 100px; object-fit: cover; border-radius: 10px; }
+.cost-draft-name { font-size: 16px; }
+.cost-liked svg { fill: white; }
+.cost-navbar-error { position: absolute; bottom: 65px; left: 10px; right: 10px; padding: 10px; background: white; color: #b00020; font-size: 12px; z-index: 30; }
+.cost-content > .alert { font-size: 12px; margin: 6px; }
+.cost-offline { height: 24px; line-height: 12px; }
+.cost-content:has(> .cost-offline) .feed-screen { height: 616px; min-height: 616px; }

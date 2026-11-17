@@ -10644,6 +10644,1673 @@
           }
         }
       ]
+    },
+    {
+      "_type": "UMLModel",
+      "_id": "fe536a65f0ad44188f85b7",
+      "_parent": {
+        "$ref": "8QPuaw10WQaiqIE8FIjZFQ=="
+      },
+      "name": "ЛР6 Прецеденты интерфейса издержек",
+      "ownedElements": [
+        {
+          "_type": "UMLUseCaseDiagram",
+          "_id": "0df031f0bb9f4b23917013",
+          "_parent": {
+            "$ref": "fe536a65f0ad44188f85b7"
+          },
+          "name": "ЛР6 Гость и создатель издержек",
+          "showGrid": false,
+          "ownedViews": [
+            {
+              "_type": "UMLRectView",
+              "_id": "45484298064d4f6ba6a627",
+              "_parent": {
+                "$ref": "0df031f0bb9f4b23917013"
+              },
+              "left": 220,
+              "top": 35,
+              "width": 540,
+              "height": 1050,
+              "fillColor": "#ffffff",
+              "lineColor": "#000000",
+              "showShadow": false
+            },
+            {
+              "_type": "UMLTextView",
+              "_id": "6a98d9affeb4479db5f0f2",
+              "_parent": {
+                "$ref": "0df031f0bb9f4b23917013"
+              },
+              "left": 230,
+              "top": 45,
+              "width": 520,
+              "height": 30,
+              "text": "Масштаб — интерфейс издержек",
+              "font": "Arial;18;1",
+              "horizontalAlignment": 2
+            },
+            {
+              "_type": "UMLActorView",
+              "_id": "e7207d14bfb146e1b96d75",
+              "_parent": {
+                "$ref": "0df031f0bb9f4b23917013"
+              },
+              "model": {
+                "$ref": "2814e8c193c94b55b03848"
+              },
+              "left": 65,
+              "top": 200,
+              "width": 90,
+              "height": 110,
+              "font": "Arial;17;0",
+              "fillColor": "#ffffff",
+              "lineColor": "#000000",
+              "suppressAttributes": true,
+              "suppressOperations": true,
+              "showShadow": false,
+              "subViews": [
+                {
+                  "_type": "UMLNameCompartmentView",
+                  "_id": "a9efdd9815a04bbd9e66f6",
+                  "_parent": {
+                    "$ref": "e7207d14bfb146e1b96d75"
+                  },
+                  "model": {
+                    "$ref": "2814e8c193c94b55b03848"
+                  },
+                  "left": 65,
+                  "top": 200,
+                  "width": 90,
+                  "height": 40,
+                  "subViews": [
+                    {
+                      "_type": "LabelView",
+                      "_id": "8faf8045e3014a90bb2c7e",
+                      "_parent": {
+                        "$ref": "a9efdd9815a04bbd9e66f6"
+                      },
+                      "left": 70,
+                      "top": 205,
+                      "width": 80,
+                      "height": 40,
+                      "text": "Гость",
+                      "wordWrap": true,
+                      "font": "Arial;17;0",
+                      "horizontalAlignment": 2
+                    }
+                  ],
+                  "nameLabel": {
+                    "$ref": "8faf8045e3014a90bb2c7e"
+                  }
+                },
+                {
+                  "_type": "UMLAttributeCompartmentView",
+                  "_id": "8377a9673f724e65a45be5",
+                  "_parent": {
+                    "$ref": "e7207d14bfb146e1b96d75"
+                  },
+                  "model": {
+                    "$ref": "2814e8c193c94b55b03848"
+                  },
+                  "visible": false
+                },
+                {
+                  "_type": "UMLOperationCompartmentView",
+                  "_id": "32f8358959cb44edbbed6e",
+                  "_parent": {
+                    "$ref": "e7207d14bfb146e1b96d75"
+                  },
+                  "model": {
+                    "$ref": "2814e8c193c94b55b03848"
+                  },
+                  "visible": false
+                }
+              ],
+              "nameCompartment": {
+                "$ref": "a9efdd9815a04bbd9e66f6"
+              },
+              "attributeCompartment": {
+                "$ref": "8377a9673f724e65a45be5"
+              },
+              "operationCompartment": {
+                "$ref": "32f8358959cb44edbbed6e"
+              }
+            },
+            {
+              "_type": "UMLActorView",
+              "_id": "3621e25e7a4c4a6083f0ec",
+              "_parent": {
+                "$ref": "0df031f0bb9f4b23917013"
+              },
+              "model": {
+                "$ref": "00af3904af4042238e7efe"
+              },
+              "left": 65,
+              "top": 735,
+              "width": 90,
+              "height": 110,
+              "font": "Arial;17;0",
+              "fillColor": "#ffffff",
+              "lineColor": "#000000",
+              "suppressAttributes": true,
+              "suppressOperations": true,
+              "showShadow": false,
+              "subViews": [
+                {
+                  "_type": "UMLNameCompartmentView",
+                  "_id": "ff68b16f23f84c7785f2ca",
+                  "_parent": {
+                    "$ref": "3621e25e7a4c4a6083f0ec"
+                  },
+                  "model": {
+                    "$ref": "00af3904af4042238e7efe"
+                  },
+                  "left": 65,
+                  "top": 735,
+                  "width": 90,
+                  "height": 40,
+                  "subViews": [
+                    {
+                      "_type": "LabelView",
+                      "_id": "1960a1e3299744a9b47017",
+                      "_parent": {
+                        "$ref": "ff68b16f23f84c7785f2ca"
+                      },
+                      "left": 70,
+                      "top": 740,
+                      "width": 80,
+                      "height": 40,
+                      "text": "Создатель",
+                      "wordWrap": true,
+                      "font": "Arial;17;0",
+                      "horizontalAlignment": 2
+                    }
+                  ],
+                  "nameLabel": {
+                    "$ref": "1960a1e3299744a9b47017"
+                  }
+                },
+                {
+                  "_type": "UMLAttributeCompartmentView",
+                  "_id": "8cf40d5bac07413db9de4b",
+                  "_parent": {
+                    "$ref": "3621e25e7a4c4a6083f0ec"
+                  },
+                  "model": {
+                    "$ref": "00af3904af4042238e7efe"
+                  },
+                  "visible": false
+                },
+                {
+                  "_type": "UMLOperationCompartmentView",
+                  "_id": "f6b1d2f403d344988fc85b",
+                  "_parent": {
+                    "$ref": "3621e25e7a4c4a6083f0ec"
+                  },
+                  "model": {
+                    "$ref": "00af3904af4042238e7efe"
+                  },
+                  "visible": false
+                }
+              ],
+              "nameCompartment": {
+                "$ref": "ff68b16f23f84c7785f2ca"
+              },
+              "attributeCompartment": {
+                "$ref": "8cf40d5bac07413db9de4b"
+              },
+              "operationCompartment": {
+                "$ref": "f6b1d2f403d344988fc85b"
+              }
+            },
+            {
+              "_type": "UMLUseCaseView",
+              "_id": "0c46fe8dd8ed484db69df2",
+              "_parent": {
+                "$ref": "0df031f0bb9f4b23917013"
+              },
+              "model": {
+                "$ref": "d6d3aa04fa824caaa80969"
+              },
+              "left": 300,
+              "top": 75,
+              "width": 380,
+              "height": 70,
+              "font": "Arial;17;0",
+              "fillColor": "#ffffff",
+              "lineColor": "#000000",
+              "suppressAttributes": true,
+              "suppressOperations": true,
+              "showShadow": false,
+              "subViews": [
+                {
+                  "_type": "UMLNameCompartmentView",
+                  "_id": "6b7dd8d04ce54c62b43c80",
+                  "_parent": {
+                    "$ref": "0c46fe8dd8ed484db69df2"
+                  },
+                  "model": {
+                    "$ref": "d6d3aa04fa824caaa80969"
+                  },
+                  "left": 300,
+                  "top": 75,
+                  "width": 380,
+                  "height": 40,
+                  "subViews": [
+                    {
+                      "_type": "LabelView",
+                      "_id": "2236236fd8644dc588434d",
+                      "_parent": {
+                        "$ref": "6b7dd8d04ce54c62b43c80"
+                      },
+                      "left": 305,
+                      "top": 80,
+                      "width": 370,
+                      "height": 40,
+                      "text": "Просмотр и фильтрация\nкаталога издержек",
+                      "wordWrap": true,
+                      "font": "Arial;17;0",
+                      "horizontalAlignment": 2
+                    }
+                  ],
+                  "nameLabel": {
+                    "$ref": "2236236fd8644dc588434d"
+                  }
+                },
+                {
+                  "_type": "UMLAttributeCompartmentView",
+                  "_id": "29558f282bfc40e8ace9fc",
+                  "_parent": {
+                    "$ref": "0c46fe8dd8ed484db69df2"
+                  },
+                  "model": {
+                    "$ref": "d6d3aa04fa824caaa80969"
+                  },
+                  "visible": false
+                },
+                {
+                  "_type": "UMLOperationCompartmentView",
+                  "_id": "0789ba69a4d4408c8a4b26",
+                  "_parent": {
+                    "$ref": "0c46fe8dd8ed484db69df2"
+                  },
+                  "model": {
+                    "$ref": "d6d3aa04fa824caaa80969"
+                  },
+                  "visible": false
+                },
+                {
+                  "_type": "UMLExtensionPointCompartmentView",
+                  "_id": "b681e24000294fc9b9f29f",
+                  "_parent": {
+                    "$ref": "0c46fe8dd8ed484db69df2"
+                  },
+                  "model": {
+                    "$ref": "d6d3aa04fa824caaa80969"
+                  },
+                  "visible": false
+                }
+              ],
+              "nameCompartment": {
+                "$ref": "6b7dd8d04ce54c62b43c80"
+              },
+              "attributeCompartment": {
+                "$ref": "29558f282bfc40e8ace9fc"
+              },
+              "operationCompartment": {
+                "$ref": "0789ba69a4d4408c8a4b26"
+              },
+              "extensionPointCompartment": {
+                "$ref": "b681e24000294fc9b9f29f"
+              }
+            },
+            {
+              "_type": "UMLAssociationView",
+              "_id": "292fa53ab34e4a8d99a556",
+              "_parent": {
+                "$ref": "0df031f0bb9f4b23917013"
+              },
+              "model": {
+                "$ref": "605f48131b654fc4b54876"
+              },
+              "tail": {
+                "$ref": "e7207d14bfb146e1b96d75"
+              },
+              "head": {
+                "$ref": "0c46fe8dd8ed484db69df2"
+              },
+              "lineStyle": 1,
+              "points": "155:250;300:110"
+            },
+            {
+              "_type": "UMLUseCaseView",
+              "_id": "03de84ee6bc54ed5a17d8c",
+              "_parent": {
+                "$ref": "0df031f0bb9f4b23917013"
+              },
+              "model": {
+                "$ref": "576b4df387fc4090aef915"
+              },
+              "left": 300,
+              "top": 185,
+              "width": 380,
+              "height": 70,
+              "font": "Arial;17;0",
+              "fillColor": "#ffffff",
+              "lineColor": "#000000",
+              "suppressAttributes": true,
+              "suppressOperations": true,
+              "showShadow": false,
+              "subViews": [
+                {
+                  "_type": "UMLNameCompartmentView",
+                  "_id": "a8ceee41b66149a6925069",
+                  "_parent": {
+                    "$ref": "03de84ee6bc54ed5a17d8c"
+                  },
+                  "model": {
+                    "$ref": "576b4df387fc4090aef915"
+                  },
+                  "left": 300,
+                  "top": 185,
+                  "width": 380,
+                  "height": 40,
+                  "subViews": [
+                    {
+                      "_type": "LabelView",
+                      "_id": "43d29cdbe19044778c5b50",
+                      "_parent": {
+                        "$ref": "a8ceee41b66149a6925069"
+                      },
+                      "left": 305,
+                      "top": 190,
+                      "width": 370,
+                      "height": 40,
+                      "text": "Просмотр ленты, описания\nи параметров издержки",
+                      "wordWrap": true,
+                      "font": "Arial;17;0",
+                      "horizontalAlignment": 2
+                    }
+                  ],
+                  "nameLabel": {
+                    "$ref": "43d29cdbe19044778c5b50"
+                  }
+                },
+                {
+                  "_type": "UMLAttributeCompartmentView",
+                  "_id": "99a7ad9f3b2d4ef585d70a",
+                  "_parent": {
+                    "$ref": "03de84ee6bc54ed5a17d8c"
+                  },
+                  "model": {
+                    "$ref": "576b4df387fc4090aef915"
+                  },
+                  "visible": false
+                },
+                {
+                  "_type": "UMLOperationCompartmentView",
+                  "_id": "6d3b9d54a9f048898101a3",
+                  "_parent": {
+                    "$ref": "03de84ee6bc54ed5a17d8c"
+                  },
+                  "model": {
+                    "$ref": "576b4df387fc4090aef915"
+                  },
+                  "visible": false
+                },
+                {
+                  "_type": "UMLExtensionPointCompartmentView",
+                  "_id": "0a314bca50234a4b948d4b",
+                  "_parent": {
+                    "$ref": "03de84ee6bc54ed5a17d8c"
+                  },
+                  "model": {
+                    "$ref": "576b4df387fc4090aef915"
+                  },
+                  "visible": false
+                }
+              ],
+              "nameCompartment": {
+                "$ref": "a8ceee41b66149a6925069"
+              },
+              "attributeCompartment": {
+                "$ref": "99a7ad9f3b2d4ef585d70a"
+              },
+              "operationCompartment": {
+                "$ref": "6d3b9d54a9f048898101a3"
+              },
+              "extensionPointCompartment": {
+                "$ref": "0a314bca50234a4b948d4b"
+              }
+            },
+            {
+              "_type": "UMLAssociationView",
+              "_id": "7163cc850fe046c887a45c",
+              "_parent": {
+                "$ref": "0df031f0bb9f4b23917013"
+              },
+              "model": {
+                "$ref": "2ce6694810b84ef2b11625"
+              },
+              "tail": {
+                "$ref": "e7207d14bfb146e1b96d75"
+              },
+              "head": {
+                "$ref": "03de84ee6bc54ed5a17d8c"
+              },
+              "lineStyle": 1,
+              "points": "155:250;300:220"
+            },
+            {
+              "_type": "UMLUseCaseView",
+              "_id": "f1cb3b23eaf641e782b93b",
+              "_parent": {
+                "$ref": "0df031f0bb9f4b23917013"
+              },
+              "model": {
+                "$ref": "3b47ad282ab5471c8aafda"
+              },
+              "left": 300,
+              "top": 295,
+              "width": 380,
+              "height": 70,
+              "font": "Arial;17;0",
+              "fillColor": "#ffffff",
+              "lineColor": "#000000",
+              "suppressAttributes": true,
+              "suppressOperations": true,
+              "showShadow": false,
+              "subViews": [
+                {
+                  "_type": "UMLNameCompartmentView",
+                  "_id": "bc32539e1489414d95c264",
+                  "_parent": {
+                    "$ref": "f1cb3b23eaf641e782b93b"
+                  },
+                  "model": {
+                    "$ref": "3b47ad282ab5471c8aafda"
+                  },
+                  "left": 300,
+                  "top": 295,
+                  "width": 380,
+                  "height": 40,
+                  "subViews": [
+                    {
+                      "_type": "LabelView",
+                      "_id": "cfbbb772e1b4428ea8c71f",
+                      "_parent": {
+                        "$ref": "bc32539e1489414d95c264"
+                      },
+                      "left": 305,
+                      "top": 300,
+                      "width": 370,
+                      "height": 40,
+                      "text": "Регистрация\nпользователя",
+                      "wordWrap": true,
+                      "font": "Arial;17;0",
+                      "horizontalAlignment": 2
+                    }
+                  ],
+                  "nameLabel": {
+                    "$ref": "cfbbb772e1b4428ea8c71f"
+                  }
+                },
+                {
+                  "_type": "UMLAttributeCompartmentView",
+                  "_id": "10cc9b019cf049a19e62e0",
+                  "_parent": {
+                    "$ref": "f1cb3b23eaf641e782b93b"
+                  },
+                  "model": {
+                    "$ref": "3b47ad282ab5471c8aafda"
+                  },
+                  "visible": false
+                },
+                {
+                  "_type": "UMLOperationCompartmentView",
+                  "_id": "a49c2ce569d74569a592ae",
+                  "_parent": {
+                    "$ref": "f1cb3b23eaf641e782b93b"
+                  },
+                  "model": {
+                    "$ref": "3b47ad282ab5471c8aafda"
+                  },
+                  "visible": false
+                },
+                {
+                  "_type": "UMLExtensionPointCompartmentView",
+                  "_id": "6af945fb39814d7e973dfb",
+                  "_parent": {
+                    "$ref": "f1cb3b23eaf641e782b93b"
+                  },
+                  "model": {
+                    "$ref": "3b47ad282ab5471c8aafda"
+                  },
+                  "visible": false
+                }
+              ],
+              "nameCompartment": {
+                "$ref": "bc32539e1489414d95c264"
+              },
+              "attributeCompartment": {
+                "$ref": "10cc9b019cf049a19e62e0"
+              },
+              "operationCompartment": {
+                "$ref": "a49c2ce569d74569a592ae"
+              },
+              "extensionPointCompartment": {
+                "$ref": "6af945fb39814d7e973dfb"
+              }
+            },
+            {
+              "_type": "UMLAssociationView",
+              "_id": "e02af4124c62455aaad163",
+              "_parent": {
+                "$ref": "0df031f0bb9f4b23917013"
+              },
+              "model": {
+                "$ref": "1e5d768c87d94087af4a34"
+              },
+              "tail": {
+                "$ref": "e7207d14bfb146e1b96d75"
+              },
+              "head": {
+                "$ref": "f1cb3b23eaf641e782b93b"
+              },
+              "lineStyle": 1,
+              "points": "155:250;300:330"
+            },
+            {
+              "_type": "UMLUseCaseView",
+              "_id": "973d24a8299b48adbd6da6",
+              "_parent": {
+                "$ref": "0df031f0bb9f4b23917013"
+              },
+              "model": {
+                "$ref": "5bd4947f34d64cb9a646a0"
+              },
+              "left": 300,
+              "top": 405,
+              "width": 380,
+              "height": 70,
+              "font": "Arial;17;0",
+              "fillColor": "#ffffff",
+              "lineColor": "#000000",
+              "suppressAttributes": true,
+              "suppressOperations": true,
+              "showShadow": false,
+              "subViews": [
+                {
+                  "_type": "UMLNameCompartmentView",
+                  "_id": "9bb10f20cdde45de96f670",
+                  "_parent": {
+                    "$ref": "973d24a8299b48adbd6da6"
+                  },
+                  "model": {
+                    "$ref": "5bd4947f34d64cb9a646a0"
+                  },
+                  "left": 300,
+                  "top": 405,
+                  "width": 380,
+                  "height": 40,
+                  "subViews": [
+                    {
+                      "_type": "LabelView",
+                      "_id": "738903ad8b9440618a85ae",
+                      "_parent": {
+                        "$ref": "9bb10f20cdde45de96f670"
+                      },
+                      "left": 305,
+                      "top": 410,
+                      "width": 370,
+                      "height": 40,
+                      "text": "Вход\nв систему",
+                      "wordWrap": true,
+                      "font": "Arial;17;0",
+                      "horizontalAlignment": 2
+                    }
+                  ],
+                  "nameLabel": {
+                    "$ref": "738903ad8b9440618a85ae"
+                  }
+                },
+                {
+                  "_type": "UMLAttributeCompartmentView",
+                  "_id": "beeb3688b81e4eb68ab675",
+                  "_parent": {
+                    "$ref": "973d24a8299b48adbd6da6"
+                  },
+                  "model": {
+                    "$ref": "5bd4947f34d64cb9a646a0"
+                  },
+                  "visible": false
+                },
+                {
+                  "_type": "UMLOperationCompartmentView",
+                  "_id": "96d1fdc0092d48edbf07db",
+                  "_parent": {
+                    "$ref": "973d24a8299b48adbd6da6"
+                  },
+                  "model": {
+                    "$ref": "5bd4947f34d64cb9a646a0"
+                  },
+                  "visible": false
+                },
+                {
+                  "_type": "UMLExtensionPointCompartmentView",
+                  "_id": "aea03ae5dd4247a6a59708",
+                  "_parent": {
+                    "$ref": "973d24a8299b48adbd6da6"
+                  },
+                  "model": {
+                    "$ref": "5bd4947f34d64cb9a646a0"
+                  },
+                  "visible": false
+                }
+              ],
+              "nameCompartment": {
+                "$ref": "9bb10f20cdde45de96f670"
+              },
+              "attributeCompartment": {
+                "$ref": "beeb3688b81e4eb68ab675"
+              },
+              "operationCompartment": {
+                "$ref": "96d1fdc0092d48edbf07db"
+              },
+              "extensionPointCompartment": {
+                "$ref": "aea03ae5dd4247a6a59708"
+              }
+            },
+            {
+              "_type": "UMLAssociationView",
+              "_id": "971fa128dffa4b0e83b652",
+              "_parent": {
+                "$ref": "0df031f0bb9f4b23917013"
+              },
+              "model": {
+                "$ref": "275e085d6f0745c6932ee0"
+              },
+              "tail": {
+                "$ref": "e7207d14bfb146e1b96d75"
+              },
+              "head": {
+                "$ref": "973d24a8299b48adbd6da6"
+              },
+              "lineStyle": 1,
+              "points": "155:250;300:440"
+            },
+            {
+              "_type": "UMLUseCaseView",
+              "_id": "3be6779386014f2fb67060",
+              "_parent": {
+                "$ref": "0df031f0bb9f4b23917013"
+              },
+              "model": {
+                "$ref": "d89abaf9eb0347cb9ada65"
+              },
+              "left": 300,
+              "top": 535,
+              "width": 380,
+              "height": 70,
+              "font": "Arial;17;0",
+              "fillColor": "#ffffff",
+              "lineColor": "#000000",
+              "suppressAttributes": true,
+              "suppressOperations": true,
+              "showShadow": false,
+              "subViews": [
+                {
+                  "_type": "UMLNameCompartmentView",
+                  "_id": "07c315290b5b465eab0ace",
+                  "_parent": {
+                    "$ref": "3be6779386014f2fb67060"
+                  },
+                  "model": {
+                    "$ref": "d89abaf9eb0347cb9ada65"
+                  },
+                  "left": 300,
+                  "top": 535,
+                  "width": 380,
+                  "height": 40,
+                  "subViews": [
+                    {
+                      "_type": "LabelView",
+                      "_id": "5c639d6ddc9846e6b9934b",
+                      "_parent": {
+                        "$ref": "07c315290b5b465eab0ace"
+                      },
+                      "left": 305,
+                      "top": 540,
+                      "width": 370,
+                      "height": 40,
+                      "text": "Создание черновика\nс изображением и видео",
+                      "wordWrap": true,
+                      "font": "Arial;17;0",
+                      "horizontalAlignment": 2
+                    }
+                  ],
+                  "nameLabel": {
+                    "$ref": "5c639d6ddc9846e6b9934b"
+                  }
+                },
+                {
+                  "_type": "UMLAttributeCompartmentView",
+                  "_id": "7e066182b06e42608c4cad",
+                  "_parent": {
+                    "$ref": "3be6779386014f2fb67060"
+                  },
+                  "model": {
+                    "$ref": "d89abaf9eb0347cb9ada65"
+                  },
+                  "visible": false
+                },
+                {
+                  "_type": "UMLOperationCompartmentView",
+                  "_id": "bc236d5b3f5840e1b176c2",
+                  "_parent": {
+                    "$ref": "3be6779386014f2fb67060"
+                  },
+                  "model": {
+                    "$ref": "d89abaf9eb0347cb9ada65"
+                  },
+                  "visible": false
+                },
+                {
+                  "_type": "UMLExtensionPointCompartmentView",
+                  "_id": "3aaf2d17765546abb0ecda",
+                  "_parent": {
+                    "$ref": "3be6779386014f2fb67060"
+                  },
+                  "model": {
+                    "$ref": "d89abaf9eb0347cb9ada65"
+                  },
+                  "visible": false
+                }
+              ],
+              "nameCompartment": {
+                "$ref": "07c315290b5b465eab0ace"
+              },
+              "attributeCompartment": {
+                "$ref": "7e066182b06e42608c4cad"
+              },
+              "operationCompartment": {
+                "$ref": "bc236d5b3f5840e1b176c2"
+              },
+              "extensionPointCompartment": {
+                "$ref": "3aaf2d17765546abb0ecda"
+              }
+            },
+            {
+              "_type": "UMLAssociationView",
+              "_id": "e7daa4dd404e45d9b3b10d",
+              "_parent": {
+                "$ref": "0df031f0bb9f4b23917013"
+              },
+              "model": {
+                "$ref": "9d0c93da78004503abb933"
+              },
+              "tail": {
+                "$ref": "3621e25e7a4c4a6083f0ec"
+              },
+              "head": {
+                "$ref": "3be6779386014f2fb67060"
+              },
+              "lineStyle": 1,
+              "points": "155:785;300:570"
+            },
+            {
+              "_type": "UMLUseCaseView",
+              "_id": "363e8f4418ea4d4a9c15fe",
+              "_parent": {
+                "$ref": "0df031f0bb9f4b23917013"
+              },
+              "model": {
+                "$ref": "1674264f5df04e4693eb22"
+              },
+              "left": 300,
+              "top": 645,
+              "width": 380,
+              "height": 70,
+              "font": "Arial;17;0",
+              "fillColor": "#ffffff",
+              "lineColor": "#000000",
+              "suppressAttributes": true,
+              "suppressOperations": true,
+              "showShadow": false,
+              "subViews": [
+                {
+                  "_type": "UMLNameCompartmentView",
+                  "_id": "27fbc4b634134f1c9e86c5",
+                  "_parent": {
+                    "$ref": "363e8f4418ea4d4a9c15fe"
+                  },
+                  "model": {
+                    "$ref": "1674264f5df04e4693eb22"
+                  },
+                  "left": 300,
+                  "top": 645,
+                  "width": 380,
+                  "height": 40,
+                  "subViews": [
+                    {
+                      "_type": "LabelView",
+                      "_id": "3e240c6d61614756b6e8c0",
+                      "_parent": {
+                        "$ref": "27fbc4b634134f1c9e86c5"
+                      },
+                      "left": 305,
+                      "top": 650,
+                      "width": 370,
+                      "height": 40,
+                      "text": "Публикация\nсвоей издержки",
+                      "wordWrap": true,
+                      "font": "Arial;17;0",
+                      "horizontalAlignment": 2
+                    }
+                  ],
+                  "nameLabel": {
+                    "$ref": "3e240c6d61614756b6e8c0"
+                  }
+                },
+                {
+                  "_type": "UMLAttributeCompartmentView",
+                  "_id": "2f141cca558640d180dd34",
+                  "_parent": {
+                    "$ref": "363e8f4418ea4d4a9c15fe"
+                  },
+                  "model": {
+                    "$ref": "1674264f5df04e4693eb22"
+                  },
+                  "visible": false
+                },
+                {
+                  "_type": "UMLOperationCompartmentView",
+                  "_id": "aa9a3f9d4a9d413aa5f28d",
+                  "_parent": {
+                    "$ref": "363e8f4418ea4d4a9c15fe"
+                  },
+                  "model": {
+                    "$ref": "1674264f5df04e4693eb22"
+                  },
+                  "visible": false
+                },
+                {
+                  "_type": "UMLExtensionPointCompartmentView",
+                  "_id": "4e769f8e1e634ebcb1d4f9",
+                  "_parent": {
+                    "$ref": "363e8f4418ea4d4a9c15fe"
+                  },
+                  "model": {
+                    "$ref": "1674264f5df04e4693eb22"
+                  },
+                  "visible": false
+                }
+              ],
+              "nameCompartment": {
+                "$ref": "27fbc4b634134f1c9e86c5"
+              },
+              "attributeCompartment": {
+                "$ref": "2f141cca558640d180dd34"
+              },
+              "operationCompartment": {
+                "$ref": "aa9a3f9d4a9d413aa5f28d"
+              },
+              "extensionPointCompartment": {
+                "$ref": "4e769f8e1e634ebcb1d4f9"
+              }
+            },
+            {
+              "_type": "UMLAssociationView",
+              "_id": "d6eced0e02c94f14a91e84",
+              "_parent": {
+                "$ref": "0df031f0bb9f4b23917013"
+              },
+              "model": {
+                "$ref": "b3761b7398ee457e887853"
+              },
+              "tail": {
+                "$ref": "3621e25e7a4c4a6083f0ec"
+              },
+              "head": {
+                "$ref": "363e8f4418ea4d4a9c15fe"
+              },
+              "lineStyle": 1,
+              "points": "155:785;300:680"
+            },
+            {
+              "_type": "UMLUseCaseView",
+              "_id": "682c358b163a4afcb112c5",
+              "_parent": {
+                "$ref": "0df031f0bb9f4b23917013"
+              },
+              "model": {
+                "$ref": "37ad170f54a5461e8ec9ee"
+              },
+              "left": 300,
+              "top": 755,
+              "width": 380,
+              "height": 70,
+              "font": "Arial;17;0",
+              "fillColor": "#ffffff",
+              "lineColor": "#000000",
+              "suppressAttributes": true,
+              "suppressOperations": true,
+              "showShadow": false,
+              "subViews": [
+                {
+                  "_type": "UMLNameCompartmentView",
+                  "_id": "af4a97c24dc84e76bc6cf5",
+                  "_parent": {
+                    "$ref": "682c358b163a4afcb112c5"
+                  },
+                  "model": {
+                    "$ref": "37ad170f54a5461e8ec9ee"
+                  },
+                  "left": 300,
+                  "top": 755,
+                  "width": 380,
+                  "height": 40,
+                  "subViews": [
+                    {
+                      "_type": "LabelView",
+                      "_id": "a917ad50df1b45e6921df8",
+                      "_parent": {
+                        "$ref": "af4a97c24dc84e76bc6cf5"
+                      },
+                      "left": 305,
+                      "top": 760,
+                      "width": 370,
+                      "height": 40,
+                      "text": "Логическое удаление\nсвоей издержки",
+                      "wordWrap": true,
+                      "font": "Arial;17;0",
+                      "horizontalAlignment": 2
+                    }
+                  ],
+                  "nameLabel": {
+                    "$ref": "a917ad50df1b45e6921df8"
+                  }
+                },
+                {
+                  "_type": "UMLAttributeCompartmentView",
+                  "_id": "1643a3558ddc4162bd7f1b",
+                  "_parent": {
+                    "$ref": "682c358b163a4afcb112c5"
+                  },
+                  "model": {
+                    "$ref": "37ad170f54a5461e8ec9ee"
+                  },
+                  "visible": false
+                },
+                {
+                  "_type": "UMLOperationCompartmentView",
+                  "_id": "aa524e24b36346f59527ab",
+                  "_parent": {
+                    "$ref": "682c358b163a4afcb112c5"
+                  },
+                  "model": {
+                    "$ref": "37ad170f54a5461e8ec9ee"
+                  },
+                  "visible": false
+                },
+                {
+                  "_type": "UMLExtensionPointCompartmentView",
+                  "_id": "181baf3615b34b3788cf2b",
+                  "_parent": {
+                    "$ref": "682c358b163a4afcb112c5"
+                  },
+                  "model": {
+                    "$ref": "37ad170f54a5461e8ec9ee"
+                  },
+                  "visible": false
+                }
+              ],
+              "nameCompartment": {
+                "$ref": "af4a97c24dc84e76bc6cf5"
+              },
+              "attributeCompartment": {
+                "$ref": "1643a3558ddc4162bd7f1b"
+              },
+              "operationCompartment": {
+                "$ref": "aa524e24b36346f59527ab"
+              },
+              "extensionPointCompartment": {
+                "$ref": "181baf3615b34b3788cf2b"
+              }
+            },
+            {
+              "_type": "UMLAssociationView",
+              "_id": "43aea7b83eec434f906a78",
+              "_parent": {
+                "$ref": "0df031f0bb9f4b23917013"
+              },
+              "model": {
+                "$ref": "241972bb8c5b49c7a5f6ba"
+              },
+              "tail": {
+                "$ref": "3621e25e7a4c4a6083f0ec"
+              },
+              "head": {
+                "$ref": "682c358b163a4afcb112c5"
+              },
+              "lineStyle": 1,
+              "points": "155:785;300:790"
+            },
+            {
+              "_type": "UMLUseCaseView",
+              "_id": "a60e7929587b428d8accc0",
+              "_parent": {
+                "$ref": "0df031f0bb9f4b23917013"
+              },
+              "model": {
+                "$ref": "4f96dd969c454db6ae01e8"
+              },
+              "left": 300,
+              "top": 865,
+              "width": 380,
+              "height": 70,
+              "font": "Arial;17;0",
+              "fillColor": "#ffffff",
+              "lineColor": "#000000",
+              "suppressAttributes": true,
+              "suppressOperations": true,
+              "showShadow": false,
+              "subViews": [
+                {
+                  "_type": "UMLNameCompartmentView",
+                  "_id": "a048b444c2d14544abe85d",
+                  "_parent": {
+                    "$ref": "a60e7929587b428d8accc0"
+                  },
+                  "model": {
+                    "$ref": "4f96dd969c454db6ae01e8"
+                  },
+                  "left": 300,
+                  "top": 865,
+                  "width": 380,
+                  "height": 40,
+                  "subViews": [
+                    {
+                      "_type": "LabelView",
+                      "_id": "4d549a6eae934226b5a35f",
+                      "_parent": {
+                        "$ref": "a048b444c2d14544abe85d"
+                      },
+                      "left": 305,
+                      "top": 870,
+                      "width": 370,
+                      "height": 40,
+                      "text": "Постановка\nи отмена лайка",
+                      "wordWrap": true,
+                      "font": "Arial;17;0",
+                      "horizontalAlignment": 2
+                    }
+                  ],
+                  "nameLabel": {
+                    "$ref": "4d549a6eae934226b5a35f"
+                  }
+                },
+                {
+                  "_type": "UMLAttributeCompartmentView",
+                  "_id": "3e7f143f907b4a54a65042",
+                  "_parent": {
+                    "$ref": "a60e7929587b428d8accc0"
+                  },
+                  "model": {
+                    "$ref": "4f96dd969c454db6ae01e8"
+                  },
+                  "visible": false
+                },
+                {
+                  "_type": "UMLOperationCompartmentView",
+                  "_id": "a25b16bdee1e425f99a90f",
+                  "_parent": {
+                    "$ref": "a60e7929587b428d8accc0"
+                  },
+                  "model": {
+                    "$ref": "4f96dd969c454db6ae01e8"
+                  },
+                  "visible": false
+                },
+                {
+                  "_type": "UMLExtensionPointCompartmentView",
+                  "_id": "fd9f62e41c544cc6be23cb",
+                  "_parent": {
+                    "$ref": "a60e7929587b428d8accc0"
+                  },
+                  "model": {
+                    "$ref": "4f96dd969c454db6ae01e8"
+                  },
+                  "visible": false
+                }
+              ],
+              "nameCompartment": {
+                "$ref": "a048b444c2d14544abe85d"
+              },
+              "attributeCompartment": {
+                "$ref": "3e7f143f907b4a54a65042"
+              },
+              "operationCompartment": {
+                "$ref": "a25b16bdee1e425f99a90f"
+              },
+              "extensionPointCompartment": {
+                "$ref": "fd9f62e41c544cc6be23cb"
+              }
+            },
+            {
+              "_type": "UMLAssociationView",
+              "_id": "0caeed75e9a649f3921db7",
+              "_parent": {
+                "$ref": "0df031f0bb9f4b23917013"
+              },
+              "model": {
+                "$ref": "5f0b5332aa54476a911e53"
+              },
+              "tail": {
+                "$ref": "3621e25e7a4c4a6083f0ec"
+              },
+              "head": {
+                "$ref": "a60e7929587b428d8accc0"
+              },
+              "lineStyle": 1,
+              "points": "155:785;300:900"
+            },
+            {
+              "_type": "UMLUseCaseView",
+              "_id": "a614d7cbe8694294a65afb",
+              "_parent": {
+                "$ref": "0df031f0bb9f4b23917013"
+              },
+              "model": {
+                "$ref": "14542eeec1614e4789d83c"
+              },
+              "left": 300,
+              "top": 975,
+              "width": 380,
+              "height": 70,
+              "font": "Arial;17;0",
+              "fillColor": "#ffffff",
+              "lineColor": "#000000",
+              "suppressAttributes": true,
+              "suppressOperations": true,
+              "showShadow": false,
+              "subViews": [
+                {
+                  "_type": "UMLNameCompartmentView",
+                  "_id": "88c6d6931736443f88384c",
+                  "_parent": {
+                    "$ref": "a614d7cbe8694294a65afb"
+                  },
+                  "model": {
+                    "$ref": "14542eeec1614e4789d83c"
+                  },
+                  "left": 300,
+                  "top": 975,
+                  "width": 380,
+                  "height": 40,
+                  "subViews": [
+                    {
+                      "_type": "LabelView",
+                      "_id": "f111db382e5a487ea10059",
+                      "_parent": {
+                        "$ref": "88c6d6931736443f88384c"
+                      },
+                      "left": 305,
+                      "top": 980,
+                      "width": 370,
+                      "height": 40,
+                      "text": "Выход\nиз системы",
+                      "wordWrap": true,
+                      "font": "Arial;17;0",
+                      "horizontalAlignment": 2
+                    }
+                  ],
+                  "nameLabel": {
+                    "$ref": "f111db382e5a487ea10059"
+                  }
+                },
+                {
+                  "_type": "UMLAttributeCompartmentView",
+                  "_id": "0211d2d6b60845acb4cebb",
+                  "_parent": {
+                    "$ref": "a614d7cbe8694294a65afb"
+                  },
+                  "model": {
+                    "$ref": "14542eeec1614e4789d83c"
+                  },
+                  "visible": false
+                },
+                {
+                  "_type": "UMLOperationCompartmentView",
+                  "_id": "540fc41f26bc4e62893996",
+                  "_parent": {
+                    "$ref": "a614d7cbe8694294a65afb"
+                  },
+                  "model": {
+                    "$ref": "14542eeec1614e4789d83c"
+                  },
+                  "visible": false
+                },
+                {
+                  "_type": "UMLExtensionPointCompartmentView",
+                  "_id": "0bd7e7c8a93a409db720b8",
+                  "_parent": {
+                    "$ref": "a614d7cbe8694294a65afb"
+                  },
+                  "model": {
+                    "$ref": "14542eeec1614e4789d83c"
+                  },
+                  "visible": false
+                }
+              ],
+              "nameCompartment": {
+                "$ref": "88c6d6931736443f88384c"
+              },
+              "attributeCompartment": {
+                "$ref": "0211d2d6b60845acb4cebb"
+              },
+              "operationCompartment": {
+                "$ref": "540fc41f26bc4e62893996"
+              },
+              "extensionPointCompartment": {
+                "$ref": "0bd7e7c8a93a409db720b8"
+              }
+            },
+            {
+              "_type": "UMLAssociationView",
+              "_id": "fb1db59063a14366b3e0bc",
+              "_parent": {
+                "$ref": "0df031f0bb9f4b23917013"
+              },
+              "model": {
+                "$ref": "9dc588510b0d4677908da6"
+              },
+              "tail": {
+                "$ref": "3621e25e7a4c4a6083f0ec"
+              },
+              "head": {
+                "$ref": "a614d7cbe8694294a65afb"
+              },
+              "lineStyle": 1,
+              "points": "155:785;300:1010"
+            },
+            {
+              "_type": "UMLGeneralizationView",
+              "_id": "2bba1dfcae174861a61818",
+              "_parent": {
+                "$ref": "0df031f0bb9f4b23917013"
+              },
+              "model": {
+                "$ref": "681c73b89429465e830dc1"
+              },
+              "tail": {
+                "$ref": "3621e25e7a4c4a6083f0ec"
+              },
+              "head": {
+                "$ref": "e7207d14bfb146e1b96d75"
+              },
+              "lineStyle": 1,
+              "points": "110:735;110:310"
+            }
+          ]
+        },
+        {
+          "_type": "UMLActor",
+          "_id": "2814e8c193c94b55b03848",
+          "_parent": {
+            "$ref": "fe536a65f0ad44188f85b7"
+          },
+          "name": "Гость"
+        },
+        {
+          "_type": "UMLActor",
+          "_id": "00af3904af4042238e7efe",
+          "_parent": {
+            "$ref": "fe536a65f0ad44188f85b7"
+          },
+          "name": "Создатель",
+          "ownedElements": [
+            {
+              "_type": "UMLGeneralization",
+              "_id": "681c73b89429465e830dc1",
+              "_parent": {
+                "$ref": "00af3904af4042238e7efe"
+              },
+              "source": {
+                "$ref": "00af3904af4042238e7efe"
+              },
+              "target": {
+                "$ref": "2814e8c193c94b55b03848"
+              }
+            }
+          ]
+        },
+        {
+          "_type": "UMLUseCase",
+          "_id": "d6d3aa04fa824caaa80969",
+          "_parent": {
+            "$ref": "fe536a65f0ad44188f85b7"
+          },
+          "name": "Просмотр и фильтрация\nкаталога издержек"
+        },
+        {
+          "_type": "UMLAssociation",
+          "_id": "605f48131b654fc4b54876",
+          "_parent": {
+            "$ref": "fe536a65f0ad44188f85b7"
+          },
+          "name": "",
+          "end1": {
+            "_type": "UMLAssociationEnd",
+            "_id": "bb192a85c12b40f0a73924",
+            "reference": {
+              "$ref": "2814e8c193c94b55b03848"
+            },
+            "_parent": {
+              "$ref": "605f48131b654fc4b54876"
+            }
+          },
+          "end2": {
+            "_type": "UMLAssociationEnd",
+            "_id": "95d1ef061b8842af8c82b7",
+            "reference": {
+              "$ref": "d6d3aa04fa824caaa80969"
+            },
+            "_parent": {
+              "$ref": "605f48131b654fc4b54876"
+            }
+          }
+        },
+        {
+          "_type": "UMLUseCase",
+          "_id": "576b4df387fc4090aef915",
+          "_parent": {
+            "$ref": "fe536a65f0ad44188f85b7"
+          },
+          "name": "Просмотр ленты, описания\nи параметров издержки"
+        },
+        {
+          "_type": "UMLAssociation",
+          "_id": "2ce6694810b84ef2b11625",
+          "_parent": {
+            "$ref": "fe536a65f0ad44188f85b7"
+          },
+          "name": "",
+          "end1": {
+            "_type": "UMLAssociationEnd",
+            "_id": "d321edde7a56455b84dd5a",
+            "reference": {
+              "$ref": "2814e8c193c94b55b03848"
+            },
+            "_parent": {
+              "$ref": "2ce6694810b84ef2b11625"
+            }
+          },
+          "end2": {
+            "_type": "UMLAssociationEnd",
+            "_id": "519a3ff16cdb4cdd926fd2",
+            "reference": {
+              "$ref": "576b4df387fc4090aef915"
+            },
+            "_parent": {
+              "$ref": "2ce6694810b84ef2b11625"
+            }
+          }
+        },
+        {
+          "_type": "UMLUseCase",
+          "_id": "3b47ad282ab5471c8aafda",
+          "_parent": {
+            "$ref": "fe536a65f0ad44188f85b7"
+          },
+          "name": "Регистрация\nпользователя"
+        },
+        {
+          "_type": "UMLAssociation",
+          "_id": "1e5d768c87d94087af4a34",
+          "_parent": {
+            "$ref": "fe536a65f0ad44188f85b7"
+          },
+          "name": "",
+          "end1": {
+            "_type": "UMLAssociationEnd",
+            "_id": "8eb6878d7b6b4882a189e5",
+            "reference": {
+              "$ref": "2814e8c193c94b55b03848"
+            },
+            "_parent": {
+              "$ref": "1e5d768c87d94087af4a34"
+            }
+          },
+          "end2": {
+            "_type": "UMLAssociationEnd",
+            "_id": "a194bc2b80434851861c30",
+            "reference": {
+              "$ref": "3b47ad282ab5471c8aafda"
+            },
+            "_parent": {
+              "$ref": "1e5d768c87d94087af4a34"
+            }
+          }
+        },
+        {
+          "_type": "UMLUseCase",
+          "_id": "5bd4947f34d64cb9a646a0",
+          "_parent": {
+            "$ref": "fe536a65f0ad44188f85b7"
+          },
+          "name": "Вход\nв систему"
+        },
+        {
+          "_type": "UMLAssociation",
+          "_id": "275e085d6f0745c6932ee0",
+          "_parent": {
+            "$ref": "fe536a65f0ad44188f85b7"
+          },
+          "name": "",
+          "end1": {
+            "_type": "UMLAssociationEnd",
+            "_id": "d2fa57de85a04da1900f23",
+            "reference": {
+              "$ref": "2814e8c193c94b55b03848"
+            },
+            "_parent": {
+              "$ref": "275e085d6f0745c6932ee0"
+            }
+          },
+          "end2": {
+            "_type": "UMLAssociationEnd",
+            "_id": "83e6b161dcce4572bed04f",
+            "reference": {
+              "$ref": "5bd4947f34d64cb9a646a0"
+            },
+            "_parent": {
+              "$ref": "275e085d6f0745c6932ee0"
+            }
+          }
+        },
+        {
+          "_type": "UMLUseCase",
+          "_id": "d89abaf9eb0347cb9ada65",
+          "_parent": {
+            "$ref": "fe536a65f0ad44188f85b7"
+          },
+          "name": "Создание черновика\nс изображением и видео"
+        },
+        {
+          "_type": "UMLAssociation",
+          "_id": "9d0c93da78004503abb933",
+          "_parent": {
+            "$ref": "fe536a65f0ad44188f85b7"
+          },
+          "name": "",
+          "end1": {
+            "_type": "UMLAssociationEnd",
+            "_id": "7c241e0ed51b4ef8952e54",
+            "reference": {
+              "$ref": "00af3904af4042238e7efe"
+            },
+            "_parent": {
+              "$ref": "9d0c93da78004503abb933"
+            }
+          },
+          "end2": {
+            "_type": "UMLAssociationEnd",
+            "_id": "e66de3cca30040a5afef5e",
+            "reference": {
+              "$ref": "d89abaf9eb0347cb9ada65"
+            },
+            "_parent": {
+              "$ref": "9d0c93da78004503abb933"
+            }
+          }
+        },
+        {
+          "_type": "UMLUseCase",
+          "_id": "1674264f5df04e4693eb22",
+          "_parent": {
+            "$ref": "fe536a65f0ad44188f85b7"
+          },
+          "name": "Публикация\nсвоей издержки"
+        },
+        {
+          "_type": "UMLAssociation",
+          "_id": "b3761b7398ee457e887853",
+          "_parent": {
+            "$ref": "fe536a65f0ad44188f85b7"
+          },
+          "name": "",
+          "end1": {
+            "_type": "UMLAssociationEnd",
+            "_id": "6e302130dd434ce284a88a",
+            "reference": {
+              "$ref": "00af3904af4042238e7efe"
+            },
+            "_parent": {
+              "$ref": "b3761b7398ee457e887853"
+            }
+          },
+          "end2": {
+            "_type": "UMLAssociationEnd",
+            "_id": "8cb3a676bd564ea28a7560",
+            "reference": {
+              "$ref": "1674264f5df04e4693eb22"
+            },
+            "_parent": {
+              "$ref": "b3761b7398ee457e887853"
+            }
+          }
+        },
+        {
+          "_type": "UMLUseCase",
+          "_id": "37ad170f54a5461e8ec9ee",
+          "_parent": {
+            "$ref": "fe536a65f0ad44188f85b7"
+          },
+          "name": "Логическое удаление\nсвоей издержки"
+        },
+        {
+          "_type": "UMLAssociation",
+          "_id": "241972bb8c5b49c7a5f6ba",
+          "_parent": {
+            "$ref": "fe536a65f0ad44188f85b7"
+          },
+          "name": "",
+          "end1": {
+            "_type": "UMLAssociationEnd",
+            "_id": "ee32f226ce0148a6925c4d",
+            "reference": {
+              "$ref": "00af3904af4042238e7efe"
+            },
+            "_parent": {
+              "$ref": "241972bb8c5b49c7a5f6ba"
+            }
+          },
+          "end2": {
+            "_type": "UMLAssociationEnd",
+            "_id": "4acb0d9d801b4dbc926fdc",
+            "reference": {
+              "$ref": "37ad170f54a5461e8ec9ee"
+            },
+            "_parent": {
+              "$ref": "241972bb8c5b49c7a5f6ba"
+            }
+          }
+        },
+        {
+          "_type": "UMLUseCase",
+          "_id": "4f96dd969c454db6ae01e8",
+          "_parent": {
+            "$ref": "fe536a65f0ad44188f85b7"
+          },
+          "name": "Постановка\nи отмена лайка"
+        },
+        {
+          "_type": "UMLAssociation",
+          "_id": "5f0b5332aa54476a911e53",
+          "_parent": {
+            "$ref": "fe536a65f0ad44188f85b7"
+          },
+          "name": "",
+          "end1": {
+            "_type": "UMLAssociationEnd",
+            "_id": "514310a268c44ce4b3b94d",
+            "reference": {
+              "$ref": "00af3904af4042238e7efe"
+            },
+            "_parent": {
+              "$ref": "5f0b5332aa54476a911e53"
+            }
+          },
+          "end2": {
+            "_type": "UMLAssociationEnd",
+            "_id": "86cce686c88748af9f2ecc",
+            "reference": {
+              "$ref": "4f96dd969c454db6ae01e8"
+            },
+            "_parent": {
+              "$ref": "5f0b5332aa54476a911e53"
+            }
+          }
+        },
+        {
+          "_type": "UMLUseCase",
+          "_id": "14542eeec1614e4789d83c",
+          "_parent": {
+            "$ref": "fe536a65f0ad44188f85b7"
+          },
+          "name": "Выход\nиз системы"
+        },
+        {
+          "_type": "UMLAssociation",
+          "_id": "9dc588510b0d4677908da6",
+          "_parent": {
+            "$ref": "fe536a65f0ad44188f85b7"
+          },
+          "name": "",
+          "end1": {
+            "_type": "UMLAssociationEnd",
+            "_id": "037a19d516d94502b9f0a4",
+            "reference": {
+              "$ref": "00af3904af4042238e7efe"
+            },
+            "_parent": {
+              "$ref": "9dc588510b0d4677908da6"
+            }
+          },
+          "end2": {
+            "_type": "UMLAssociationEnd",
+            "_id": "670abb510fff41b4ab44af",
+            "reference": {
+              "$ref": "14542eeec1614e4789d83c"
+            },
+            "_parent": {
+              "$ref": "9dc588510b0d4677908da6"
+            }
+          }
+        }
+      ]
     }
   ],
   "documentVersion": 1
