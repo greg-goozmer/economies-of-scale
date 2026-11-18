@@ -1,49 +1,58 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1120" viewBox="0 0 800 1120">
-<rect width="800" height="1120" fill="white"/>
-<g font-family="Arial" font-size="17" fill="white" stroke="black" stroke-width="1.5">
-<rect x="220" y="35" width="540" height="1050"/>
-<text x="490" y="65" fill="black" stroke="none" text-anchor="middle" font-weight="bold">Масштаб — интерфейс издержек</text>
-<circle cx="110" cy="225" r="15"/>
-<path d="M110 240 v35 m-30 -22 h60 m-30 22 l-24 32 m24 -32 l24 32" fill="none"/>
-<text x="110" y="327" fill="black" stroke="none" text-anchor="middle">Гость</text>
-<circle cx="110" cy="760" r="15"/>
-<path d="M110 775 v35 m-30 -22 h60 m-30 22 l-24 32 m24 -32 l24 32" fill="none"/>
-<text x="110" y="862" fill="black" stroke="none" text-anchor="middle">Создатель</text>
-<line x1="155" y1="250" x2="300" y2="110"/>
-<ellipse cx="490" cy="110" rx="190" ry="35"/>
-<text x="490" y="107" text-anchor="middle" fill="black" stroke="none">Просмотр и фильтрация</text>
-<text x="490" y="129" text-anchor="middle" fill="black" stroke="none">каталога издержек</text>
-<line x1="155" y1="250" x2="300" y2="220"/>
-<ellipse cx="490" cy="220" rx="190" ry="35"/>
-<text x="490" y="217" text-anchor="middle" fill="black" stroke="none">Просмотр ленты, описания</text>
-<text x="490" y="239" text-anchor="middle" fill="black" stroke="none">и параметров издержки</text>
-<line x1="155" y1="250" x2="300" y2="330"/>
-<ellipse cx="490" cy="330" rx="190" ry="35"/>
-<text x="490" y="327" text-anchor="middle" fill="black" stroke="none">Регистрация</text>
-<text x="490" y="349" text-anchor="middle" fill="black" stroke="none">пользователя</text>
-<line x1="155" y1="250" x2="300" y2="440"/>
-<ellipse cx="490" cy="440" rx="190" ry="35"/>
-<text x="490" y="437" text-anchor="middle" fill="black" stroke="none">Вход</text>
-<text x="490" y="459" text-anchor="middle" fill="black" stroke="none">в систему</text>
-<line x1="155" y1="785" x2="300" y2="570"/>
-<ellipse cx="490" cy="570" rx="190" ry="35"/>
-<text x="490" y="567" text-anchor="middle" fill="black" stroke="none">Создание черновика</text>
-<text x="490" y="589" text-anchor="middle" fill="black" stroke="none">с изображением и видео</text>
-<line x1="155" y1="785" x2="300" y2="680"/>
-<ellipse cx="490" cy="680" rx="190" ry="35"/>
-<text x="490" y="677" text-anchor="middle" fill="black" stroke="none">Публикация</text>
-<text x="490" y="699" text-anchor="middle" fill="black" stroke="none">своей издержки</text>
-<line x1="155" y1="785" x2="300" y2="790"/>
-<ellipse cx="490" cy="790" rx="190" ry="35"/>
-<text x="490" y="787" text-anchor="middle" fill="black" stroke="none">Логическое удаление</text>
-<text x="490" y="809" text-anchor="middle" fill="black" stroke="none">своей издержки</text>
-<line x1="155" y1="785" x2="300" y2="900"/>
-<ellipse cx="490" cy="900" rx="190" ry="35"/>
-<text x="490" y="897" text-anchor="middle" fill="black" stroke="none">Постановка</text>
-<text x="490" y="919" text-anchor="middle" fill="black" stroke="none">и отмена лайка</text>
-<line x1="155" y1="785" x2="300" y2="1010"/>
-<ellipse cx="490" cy="1010" rx="190" ry="35"/>
-<text x="490" y="1007" text-anchor="middle" fill="black" stroke="none">Выход</text>
-<text x="490" y="1029" text-anchor="middle" fill="black" stroke="none">из системы</text>
-<path d="M110 735 V380" fill="none"/><path d="M110 350 L100 380 L120 380 Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="1470" viewBox="0 0 1040 1470">
+<rect width="1040" height="1470" fill="white"/>
+<g font-family="Arial" font-size="21" fill="white" stroke="black" stroke-width="1.5">
+<rect x="290" y="30" width="710" height="1400"/>
+<text x="645" y="68" fill="black" stroke="none" text-anchor="middle" font-weight="bold">Масштаб — React-приложение</text>
+<circle cx="130" cy="330" r="17"/>
+<path d="M130 347 v43 m-35 -25 h70 m-35 25 l-28 34 m28 -34 l28 34" fill="none"/>
+<text x="130" y="457" fill="black" stroke="none" text-anchor="middle">Гость</text>
+<circle cx="130" cy="1040" r="17"/>
+<path d="M130 1057 v43 m-35 -25 h70 m-35 25 l-28 34 m28 -34 l28 34" fill="none"/>
+<text x="130" y="1167" fill="black" stroke="none" text-anchor="middle">Создатель</text>
+<polyline points="165,365 310,140 390,140" fill="none"/>
+<ellipse cx="650" cy="140" rx="260" ry="44"/>
+<text x="650" y="135" text-anchor="middle" fill="black" stroke="none" font-weight="bold">Просмотреть каталог</text>
+<text x="650" y="158" text-anchor="middle" fill="black" stroke="none" font-weight="bold">издержек</text>
+<polyline points="165,365 310,250 390,250" fill="none"/>
+<ellipse cx="650" cy="250" rx="260" ry="44"/>
+<text x="650" y="245" text-anchor="middle" fill="black" stroke="none" font-weight="bold">Отфильтровать каталог</text>
+<text x="650" y="268" text-anchor="middle" fill="black" stroke="none" font-weight="bold">по коду издержки</text>
+<polyline points="165,365 310,360 390,360" fill="none"/>
+<ellipse cx="650" cy="360" rx="260" ry="44"/>
+<text x="650" y="355" text-anchor="middle" fill="black" stroke="none" font-weight="bold">Просмотреть ленту,</text>
+<text x="650" y="378" text-anchor="middle" fill="black" stroke="none" font-weight="bold">описание и параметры</text>
+<polyline points="165,365 310,470 390,470" fill="none"/>
+<ellipse cx="650" cy="470" rx="260" ry="44"/>
+<text x="650" y="465" text-anchor="middle" fill="black" stroke="none" font-weight="bold">Перейти к следующей</text>
+<text x="650" y="488" text-anchor="middle" fill="black" stroke="none" font-weight="bold">издержке в ленте</text>
+<polyline points="165,365 310,580 390,580" fill="none"/>
+<ellipse cx="650" cy="580" rx="260" ry="44"/>
+<text x="650" y="586" text-anchor="middle" fill="black" stroke="none" font-weight="bold">Зарегистрироваться</text>
+<polyline points="165,365 310,690 390,690" fill="none"/>
+<ellipse cx="650" cy="690" rx="260" ry="44"/>
+<text x="650" y="696" text-anchor="middle" fill="black" stroke="none" font-weight="bold">Войти в систему</text>
+<polyline points="165,1075 310,820 390,820" fill="none"/>
+<ellipse cx="650" cy="820" rx="260" ry="44"/>
+<text x="650" y="815" text-anchor="middle" fill="black" stroke="none" font-weight="bold">Создать черновик:</text>
+<text x="650" y="838" text-anchor="middle" fill="black" stroke="none" font-weight="bold">название, изображение, видео</text>
+<polyline points="165,1075 310,930 390,930" fill="none"/>
+<ellipse cx="650" cy="930" rx="260" ry="44"/>
+<text x="650" y="925" text-anchor="middle" fill="black" stroke="none" font-weight="bold">Открыть собственный</text>
+<text x="650" y="948" text-anchor="middle" fill="black" stroke="none" font-weight="bold">сохранённый черновик</text>
+<polyline points="165,1075 310,1040 390,1040" fill="none"/>
+<ellipse cx="650" cy="1040" rx="260" ry="44"/>
+<text x="650" y="1035" text-anchor="middle" fill="black" stroke="none" font-weight="bold">Заполнить описание, тип, код</text>
+<text x="650" y="1058" text-anchor="middle" fill="black" stroke="none" font-weight="bold">и опубликовать издержку</text>
+<polyline points="165,1075 310,1150 390,1150" fill="none"/>
+<ellipse cx="650" cy="1150" rx="260" ry="44"/>
+<text x="650" y="1145" text-anchor="middle" fill="black" stroke="none" font-weight="bold">Удалить собственную</text>
+<text x="650" y="1168" text-anchor="middle" fill="black" stroke="none" font-weight="bold">издержку</text>
+<polyline points="165,1075 310,1260 390,1260" fill="none"/>
+<ellipse cx="650" cy="1260" rx="260" ry="44"/>
+<text x="650" y="1255" text-anchor="middle" fill="black" stroke="none" font-weight="bold">Поставить или отменить</text>
+<text x="650" y="1278" text-anchor="middle" fill="black" stroke="none" font-weight="bold">лайк издержке</text>
+<polyline points="165,1075 310,1370 390,1370" fill="none"/>
+<ellipse cx="650" cy="1370" rx="260" ry="44"/>
+<text x="650" y="1376" text-anchor="middle" fill="black" stroke="none" font-weight="bold">Выйти из системы</text>
+<path d="M130 1020 V490" fill="none"/><path d="M130 465 L118 490 L142 490 Z"/>
 </g></svg>
